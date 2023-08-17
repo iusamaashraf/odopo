@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Odopo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Lato',
         primarySwatch: Colors.blue,
         textTheme: TextTheme(
           titleSmall:

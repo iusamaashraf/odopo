@@ -60,7 +60,7 @@ class GetStartedPage extends StatelessWidget {
             Positioned(
               bottom: Get.height * 0.1,
               child: GestureDetector(
-                onTap: () => Get.offAll(() => LoginPage()),
+                onTap: () => Get.offAll(() => const LoginPage()),
                 child: Container(
                   height: 44,
                   width: 149,

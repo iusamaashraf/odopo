@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/authentication/sign_up_page.dart';
+import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/auth_button.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 
@@ -53,11 +54,11 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: Get.height * 0.2),
               CommonButton(
                 text: 'Sign In',
-                onTap: () {},
+                onTap: () => Get.offAll(() => RootPage()),
               ),
               SizedBox(height: Get.height * 0.02),
               TextButton(
-                onPressed: () => Get.to(() => SignUpPage()),
+                onPressed: () => Get.to(() => const SignUpPage()),
                 child: Text(
                   'Don\'t have any account? Sign Up',
                   style: GoogleFonts.lato(
