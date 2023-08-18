@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: Get.height * 0.2),
               CommonButton(
                 text: 'Sign In',
-                onTap: () => Get.offAll(() => RootPage()),
+                onTap: () => Get.offAll(() => const RootPage()),
               ),
               SizedBox(height: Get.height * 0.02),
               TextButton(

@@ -41,6 +41,9 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   flutter_svg: ^1.1.6
   convex_bottom_bar: ^3.0.0
+  image_picker: ^0.8.7+1
+  intl: ^0.18.1
+  otp_text_field: ^1.1.3
 
 dev_dependencies:
   flutter_test:

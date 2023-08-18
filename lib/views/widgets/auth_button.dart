@@ -34,7 +34,7 @@ class AuthButton extends StatelessWidget {
           foregroundColor: Colors.black,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.circular(isCircular ? 40.0 : 12),
+            borderRadius: BorderRadius.circular(isCircular ? 40.0 : 6),
           ),
         ),
       ),
