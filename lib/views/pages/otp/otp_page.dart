@@ -145,7 +145,15 @@ class _OtpPageState extends State<OtpPage> {
                     ),
               SizedBox(height: Get.height * 0.02),
               CommonButton(
-                  onTap: () => Get.offAll(() => RootPage()), text: 'Verify'),
+                onTap: () => Get.offAll(() => RootPage()),
+                child: Text(
+                  'Verify',
+                  style: GoogleFonts.lato(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),

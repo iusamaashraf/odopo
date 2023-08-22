@@ -8,14 +8,17 @@ class AuthButton extends StatelessWidget {
   AuthButton({
     Key? key,
     required this.onPress,
-    required this.iamge,
     required this.text,
     this.isCircular = true,
+    this.isFilled = false,
+    required this.icon,
   }) : super(key: key);
   final VoidCallback onPress;
-  final String iamge;
+
   final String text;
   bool isCircular;
+  bool isFilled;
+  final Widget icon;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,14 +26,17 @@ class AuthButton extends StatelessWidget {
       width: Get.width,
       child: ElevatedButton.icon(
         onPressed: onPress,
-        icon: isCircular ? SvgPicture.asset(iamge) : const SizedBox(),
+        icon: icon,
         label: Text(
           text,
-          style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w500),
+          style: GoogleFonts.lato(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: isFilled ? Colors.white : Colors.black),
         ),
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: isFilled ? const Color(0xff181F20) : Colors.white,
           foregroundColor: Colors.black,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.grey.shade300),

@@ -22,9 +22,9 @@ class GetStartedPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(IconClass.logo),
+                  Image.asset(IconClass.getsrated),
                   Text(
-                    'Welcome',
+                    'Welcome to',
                     style: GoogleFonts.lato(
                         fontSize: 14,
                         color: ColorClass.secondayColor,
@@ -51,11 +51,6 @@ class GetStartedPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Image.asset(IconClass.heart),
             ),
             Positioned(
               bottom: Get.height * 0.1,

@@ -102,7 +102,7 @@ class _RootPageState extends State<RootPage> {
         leading: IconButton(
             onPressed: () => _key.currentState!.openDrawer(),
             icon: SvgPicture.asset(IconClass.drawer)),
-        iconTheme: const IconThemeData(color: ColorClass.primaryColor),
+        iconTheme: const IconThemeData(color: ColorClass.secondayColor),
         elevation: 0,
         actions: [
           Padding(
@@ -125,18 +125,21 @@ class _RootPageState extends State<RootPage> {
         activeColor: ColorClass.primaryColor,
         backgroundColor: Colors.white,
         elevation: 10,
-        color: Colors.grey,
+        color: ColorClass.primaryColor,
         height: 70,
         shadowColor: Colors.black12,
         curveSize: 95,
-        items: const [
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.favorite, title: 'Wishlist'),
+        items: [
+          TabItem(icon: SvgPicture.asset(IconClass.home), title: 'Home'),
           TabItem(
+              icon: SvgPicture.asset(IconClass.wishlist), title: 'Wishlist'),
+          const TabItem(
               icon: Icon(Icons.add, size: 29, color: Colors.white),
               title: 'Create Event'),
-          TabItem(icon: Icons.shop, title: 'Shop'),
-          TabItem(icon: Icons.notification_add, title: 'Notification'),
+          TabItem(icon: SvgPicture.asset(IconClass.shop), title: 'Shop'),
+          TabItem(
+              icon: SvgPicture.asset(IconClass.notification),
+              title: 'Notification'),
         ],
         initialActiveIndex: selectedpage,
         onTap: (int index) {

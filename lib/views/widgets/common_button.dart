@@ -7,10 +7,10 @@ class CommonButton extends StatelessWidget {
   const CommonButton({
     Key? key,
     required this.onTap,
-    required this.text,
+    required this.child,
   }) : super(key: key);
   final VoidCallback onTap;
-  final String text;
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,9 +18,9 @@ class CommonButton extends StatelessWidget {
       height: Get.height * 0.07,
       child: ElevatedButton(
           style: ButtonStyle(
-            elevation: MaterialStateProperty.all(0),
+            elevation: MaterialStateProperty.all(5),
             backgroundColor: MaterialStateProperty.all(ColorClass.primaryColor),
-            foregroundColor: MaterialStateProperty.all(Colors.grey),
+            foregroundColor: MaterialStateProperty.all(Colors.black),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
@@ -28,11 +28,7 @@ class CommonButton extends StatelessWidget {
             ),
           ),
           onPressed: onTap,
-          child: Text(
-            text,
-            style: GoogleFonts.lato(
-                fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
-          )),
+          child: child),
     );
   }
 }

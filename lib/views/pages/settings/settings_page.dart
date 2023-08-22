@@ -61,32 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: GoogleFonts.lato(
                         fontSize: 14, fontWeight: FontWeight.w500),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isEnabledNotification = !isEnabledNotification;
-                      });
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                          color: isEnabledNotification
-                              ? ColorClass.primaryColor
-                              : Colors.white,
-                          border: Border.all(color: ColorClass.primaryColor),
-                          borderRadius: BorderRadius.circular(4)),
-                      child: isEnabledNotification
-                          ? const Center(
-                              child: Icon(
-                                Icons.done,
-                                size: 14,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
+                  const AnimatedSwitch(),
                 ],
               ),
               SizedBox(height: Get.height * 0.01),
@@ -101,31 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: GoogleFonts.lato(
                         fontSize: 14, fontWeight: FontWeight.w500),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isRemind = !isRemind;
-                      });
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                          color:
-                              isRemind ? ColorClass.primaryColor : Colors.white,
-                          border: Border.all(color: ColorClass.primaryColor),
-                          borderRadius: BorderRadius.circular(4)),
-                      child: isEnabledNotification
-                          ? const Center(
-                              child: Icon(
-                                Icons.done,
-                                size: 14,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
+                  const AnimatedSwitch(),
                 ],
               ),
               SizedBox(height: Get.height * 0.01),
@@ -136,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Remind me of occassion',
+                    'Notification Sound',
                     style: GoogleFonts.lato(
                         fontSize: 14, fontWeight: FontWeight.w500),
                   ),
@@ -155,49 +106,18 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: GoogleFonts.lato(
                         fontSize: 14, fontWeight: FontWeight.w500),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isOneTapWishes = !isOneTapWishes;
-                      });
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                          color: isOneTapWishes
-                              ? ColorClass.primaryColor
-                              : Colors.white,
-                          border: Border.all(color: ColorClass.primaryColor),
-                          borderRadius: BorderRadius.circular(4)),
-                      child: isOneTapWishes
-                          ? const Center(
-                              child: Icon(
-                                Icons.done,
-                                size: 14,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
+                  const AnimatedSwitch(),
                 ],
               ),
               SizedBox(height: Get.height * 0.01),
               const Divider(color: Colors.grey),
               SizedBox(height: Get.height * 0.025),
               Text(
-                'General',
+                'App Theme',
                 style:
                     GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: Get.height * 0.025),
-              Text(
-                'App Theme',
-                style:
-                    GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(height: Get.height * 0.02),
               Row(
                 children: [
                   GestureDetector(
@@ -269,16 +189,32 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ],
               ),
-              SizedBox(height: Get.height * 0.01),
-              const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.01),
-              Text(
-                'Delete account',
-                style: GoogleFonts.lato(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.red),
+              const Spacer(),
+              SizedBox(
+                width: Get.width,
+                height: Get.height * 0.07,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      foregroundColor: MaterialStateProperty.all(Colors.black),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          side: const BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Delete account',
+                      style: GoogleFonts.lato(
+                          color: const Color(0xffFD2D2D),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    )),
               ),
+              SizedBox(height: Get.height * 0.04),
             ],
           ),
         ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
-import 'package:odopa/views/pages/authentication/sign_up_page.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/auth_button.dart';
 import 'package:odopa/views/widgets/common_button.dart';
@@ -39,33 +39,25 @@ class LoginPage extends StatelessWidget {
                   color: ColorClass.primaryColor,
                 ),
               ),
+              SizedBox(height: Get.height * 0.02),
+              Image.asset(IconClass.logo),
               SizedBox(height: Get.height * 0.1),
               AuthButton(
-                onPress: () {},
-                iamge: IconClass.google,
+                icon: SvgPicture.asset(
+                  IconClass.google,
+                ),
+                onPress: () => Get.offAll(() => RootPage()),
                 text: 'Continue with Google',
               ),
               SizedBox(height: Get.height * 0.02),
               AuthButton(
-                onPress: () {},
-                iamge: IconClass.apple,
-                text: 'Continue with Apple',
-              ),
-              SizedBox(height: Get.height * 0.2),
-              CommonButton(
-                text: 'Sign In',
-                onTap: () => Get.offAll(() => const RootPage()),
-              ),
-              SizedBox(height: Get.height * 0.02),
-              TextButton(
-                onPressed: () => Get.to(() => const SignUpPage()),
-                child: Text(
-                  'Don\'t have any account? Sign Up',
-                  style: GoogleFonts.lato(
-                      color: ColorClass.primaryColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400),
+                isFilled: true,
+                icon: SvgPicture.asset(
+                  IconClass.apple,
+                  color: Colors.white,
                 ),
+                onPress: () => Get.offAll(() => RootPage()),
+                text: 'Continue with Apple',
               ),
             ],
           ),

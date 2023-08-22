@@ -17,19 +17,15 @@ class InviteHeader extends StatelessWidget {
             fit: BoxFit.cover,
             width: Get.width,
           ),
-          const Positioned(
+          Positioned(
             bottom: 10,
-            left: 20,
+            left: 0,
+            right: 0,
             child: CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/images/Profile pic.png'),
+              child: Image.asset('assets/images/Profile pic.png'),
             ),
           ),
-          Positioned(
-              bottom: Get.height * 0.05,
-              right: 20,
-              child: GestureDetector(
-                  onTap: () {}, child: Image.asset('assets/icons/edit.png'))),
         ],
       ),
     );

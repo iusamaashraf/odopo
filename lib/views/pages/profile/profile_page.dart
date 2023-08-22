@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                         child: SizedBox(
                           child: CircleAvatar(
-                            radius: 40,
+                            radius: 50,
                             backgroundColor: Colors.white,
                             backgroundImage: FileImage(image!),
                           ),
@@ -124,12 +124,19 @@ class _ProfilePageState extends State<ProfilePage> {
                         onTap: () {
                           pickImage(ImageSource.camera);
                         },
-                        child: CircleAvatar(
-                          radius: 40,
-                          backgroundColor: Colors.white,
-                          child: SvgPicture.asset(IconClass.camera),
-                        ),
-                      ),
+                        child: Container(
+                          height: 105,
+                          width: 105,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.grey,
+                              )),
+                          child: Center(
+                            child: SvgPicture.asset(IconClass.camera),
+                          ),
+                        )),
                 SizedBox(height: Get.height * 0.06),
                 CommonField(
                   controller: nameController,
@@ -215,70 +222,83 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 SizedBox(height: Get.height * 0.02),
-                Text(
-                  'Set Date',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(color: ColorClass.secondayColor),
-                ),
-                SizedBox(height: Get.height * 0.01),
-                Container(
-                  height: Get.height * 0.06,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey, width: 1.5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        if (selectedDate != null)
-                          Expanded(
-                            child: Text(
-                              formatted,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        GestureDetector(
-                            onTap: _selectDate,
-                            child: Image.asset(IconClass.calendar))
-                      ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Set Date',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(color: ColorClass.secondayColor),
                     ),
-                  ),
+                    SizedBox(height: Get.height * 0.01),
+                    Container(
+                      height: Get.height * 0.06,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 1.5),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (selectedDate != null)
+                              Expanded(
+                                child: Text(
+                                  formatted,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            GestureDetector(
+                                onTap: _selectDate,
+                                child: Image.asset(IconClass.calendar))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+
                 SizedBox(height: Get.height * 0.05),
                 CommonButton(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SendInvitationPage(
-                            name: nameController.text,
-                            email: emailController.text,
-                            interest: interestController.text,
-                            eventDate: selectedDate,
-                          ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SendInvitationPage(
+                          name: nameController.text,
+                          email: emailController.text,
+                          interest: interestController.text,
+                          eventDate: selectedDate,
                         ),
-                      );
-                      // if (_selectedLocation == 'Birthday') {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => SendInvitationPage(
-                      //         name: nameController.text,
-                      //         email: emailController.text,
-                      //         interest: interestController.text,
-                      //         eventDate: selectedDate,
-                      //       ),
-                      //     ),
-                      //   );
-                      // }
-                    },
-                    text: 'Save and continue'),
+                      ),
+                    );
+                    // if (_selectedLocation == 'Birthday') {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => SendInvitationPage(
+                    //         name: nameController.text,
+                    //         email: emailController.text,
+                    //         interest: interestController.text,
+                    //         eventDate: selectedDate,
+                    //       ),
+                    //     ),
+                    //   );
+                    // }
+                  },
+                  child: Text(
+                    'Save and continue',
+                    style: GoogleFonts.lato(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
+                ),
               ],
             ),
           ),
