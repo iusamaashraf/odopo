@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
+import 'package:odopa/views/pages/root/root_page.dart';
 
 import 'components/animated_switch.dart';
 
@@ -16,7 +17,14 @@ class _SettingsPageState extends State<SettingsPage> {
   bool isEnabledNotification = false;
   bool isRemind = false;
   bool isOneTapWishes = false;
-  bool isLightTheme = false;
+  bool _isLightThemeSelected = true;
+
+  void _toggleTheme(bool isLightTheme) {
+    setState(() {
+      _isLightThemeSelected = isLightTheme;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () => Get.off(() => RootPage()),
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -118,76 +126,100 @@ class _SettingsPageState extends State<SettingsPage> {
                     GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: Get.height * 0.025),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isLightTheme = true;
-                      });
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                        color: isLightTheme
-                            ? ColorClass.primaryColor
-                            : Colors.white,
-                        border: Border.all(color: ColorClass.primaryColor),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: isLightTheme
-                          ? const Center(
-                              child: Icon(
-                                Icons.done,
-                                size: 14,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Light',
-                    style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(width: Get.width * 0.05),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isLightTheme = false;
-                      });
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                        color: !isLightTheme
-                            ? ColorClass.primaryColor
-                            : Colors.white,
-                        border: Border.all(color: ColorClass.primaryColor),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: !isLightTheme
-                          ? const Center(
-                              child: Icon(
-                                Icons.done,
-                                size: 14,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Dark',
-                    style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                ],
+              // Row(
+              //   children: [
+              //     GestureDetector(
+              //       onTap: () {
+              //         setState(() {
+              //           isLightTheme = true;
+              //         });
+              //       },
+              //       child: Container(
+              //         height: 20,
+              //         width: 20,
+              //         decoration: BoxDecoration(
+              //           color: isLightTheme
+              //               ? ColorClass.primaryColor
+              //               : Colors.white,
+              //           border: Border.all(color: ColorClass.primaryColor),
+              //           borderRadius: BorderRadius.circular(4),
+              //         ),
+              //         child: isLightTheme
+              //             ? const Center(
+              //                 child: Icon(
+              //                   Icons.done,
+              //                   size: 14,
+              //                   color: Colors.white,
+              //                 ),
+              //               )
+              //             : const SizedBox(),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 5),
+              //     Text(
+              //       'Light',
+              //       style: GoogleFonts.lato(
+              //           fontSize: 14, fontWeight: FontWeight.w500),
+              //     ),
+              //     SizedBox(width: Get.width * 0.05),
+              //     GestureDetector(
+              //       onTap: () {
+              //         setState(() {
+              //           isLightTheme = false;
+              //         });
+              //       },
+              //       child: Container(
+              //         height: 20,
+              //         width: 20,
+              //         decoration: BoxDecoration(
+              //           color: !isLightTheme
+              //               ? ColorClass.primaryColor
+              //               : Colors.white,
+              //           border: Border.all(color: ColorClass.primaryColor),
+              //           borderRadius: BorderRadius.circular(4),
+              //         ),
+              //         child: !isLightTheme
+              //             ? const Center(
+              //                 child: Icon(
+              //                   Icons.done,
+              //                   size: 14,
+              //                   color: Colors.white,
+              //                 ),
+              //               )
+              //             : const SizedBox(),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 5),
+              //     Text(
+              //       'Dark',
+              // style: GoogleFonts.lato(
+              //     fontSize: 14, fontWeight: FontWeight.w500),
+              //     ),
+              //   ],
+              // ),
+              RadioListTile<bool>(
+                title: Text(
+                  'Light',
+                  style: GoogleFonts.lato(
+                      fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                value: true,
+                groupValue: _isLightThemeSelected,
+                onChanged: (value) {
+                  _toggleTheme(value!);
+                },
+              ),
+              RadioListTile<bool>(
+                title: Text(
+                  'Dark',
+                  style: GoogleFonts.lato(
+                      fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                value: false,
+                groupValue: _isLightThemeSelected,
+                onChanged: (value) {
+                  _toggleTheme(value!);
+                },
               ),
               const Spacer(),
               SizedBox(

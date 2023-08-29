@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/views/pages/get_started/get_started_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,20 +14,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Odopo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Lato',
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          titleSmall:
-              GoogleFonts.lato(fontSize: 28, fontWeight: FontWeight.w700),
-          // bodyText1:
-          //     GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w400),
+    return ResponsiveSizer(builder: (context, orientation, screenType) {
+      return GetMaterialApp(
+        title: 'Odopo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Lato',
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            titleSmall:
+                GoogleFonts.lato(fontSize: 28, fontWeight: FontWeight.w700),
+            // bodyText1:
+            //     GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w400),
+          ),
         ),
-      ),
-      home: const GetStartedPage(),
-    );
+        home: const GetStartedPage(),
+      );
+    });
   }
 }

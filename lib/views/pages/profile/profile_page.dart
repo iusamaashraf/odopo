@@ -299,6 +299,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white),
                   ),
                 ),
+                SizedBox(height: Get.height * 0.02),
               ],
             ),
           ),

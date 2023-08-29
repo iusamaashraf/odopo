@@ -5,6 +5,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/models/wish_list_header_model.dart';
 import 'package:odopa/views/pages/add_new/add_new_page.dart';
+import 'package:odopa/views/pages/event/create_other_event_page.dart';
 import 'components/partner_wishlist.dart';
 
 class WishListPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _WishListPageState extends State<WishListPage> {
         child: Column(
           children: [
             PartnerWishlist(
-              onTap: () {},
+              onTap: () => Get.to(() => const CreateOtherEventPage()),
             ),
             Row(
               children: List.generate(

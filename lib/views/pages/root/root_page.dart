@@ -5,13 +5,20 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
+import 'package:odopa/views/pages/checkout/checkout_page.dart';
 import 'package:odopa/views/pages/event/create_event_page.dart';
+import 'package:odopa/views/pages/history/history_page.dart';
 import 'package:odopa/views/pages/home/home_page.dart';
 import 'package:odopa/views/pages/notifications/notifications_page.dart';
 import 'package:odopa/views/pages/profile/profile_page.dart';
+import 'package:odopa/views/pages/remainder/remainder_page.dart';
 import 'package:odopa/views/pages/settings/settings_page.dart';
 import 'package:odopa/views/pages/shop/shop_page.dart';
+import 'package:odopa/views/pages/terms_and_conditions/terms_and_conditions_page.dart';
+import 'package:odopa/views/pages/tracking/tracking_page.dart';
 import 'package:odopa/views/pages/wishlist/wishlist_page.dart';
+import 'package:odopa/views/widgets/common_button.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -25,90 +32,120 @@ class _RootPageState extends State<RootPage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final _pages = [
     const HomePage(),
-    WishListPage(),
-    CreateEventPage(),
-    ShopPage(),
-    NotificationsPage(),
+    const WishListPage(),
+    const CreateEventPage(),
+    const ShopPage(),
+    const NotificationsPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      drawer: Drawer(
-        width: Get.width * 0.6,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: 16.0, vertical: Get.height * 0.1),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () => Get.to(() => SettingsPage()),
-                child: Text(
-                  'Setting',
-                  style: GoogleFonts.lato(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'History',
-                  style: GoogleFonts.lato(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'Reminder',
-                  style: GoogleFonts.lato(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
-              RowData(
-                onTap: () {},
-                title: 'Order tracking',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              RowData(
-                onTap: () {},
-                title: 'Remove ads',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              RowData(
-                onTap: () {},
-                title: 'Get discount',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'Terms and condition',
-                  style: GoogleFonts.lato(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () => _key.currentState!.openDrawer(),
-            icon: SvgPicture.asset(IconClass.drawer)),
+        leading: Builder(builder: (BuildContext context) {
+          return PopupMenuButton<String>(
+            icon: SvgPicture.asset(IconClass.drawer),
+            onSelected: (value) {
+              if (value == "item1") {
+                Navigator.pop(context);
+                Get.to(() => const SettingsPage());
+              } else if (value == "item2") {
+                Navigator.pop(context);
+                Get.to(() => const HistoryPage());
+              } else if (value == "item3") {
+                Navigator.pop(context);
+                Get.to(() => const RemainderPage());
+              } else if (value == "item4") {
+                Navigator.pop(context);
+                Get.to(() => const TrackingPage());
+              } else if (value == "item5") {
+                print('object');
+                showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return subscriptionPopUp(context);
+                  },
+                );
+                // subscriptionPopUp(context);
+              } else {
+                Navigator.pop(context);
+                Get.to(() => const TermsAndConditionsPage());
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuEntry<String>>[
+                PopupMenuItem<String>(
+                  value: "item1",
+                  child: Text(
+                    "Settings",
+                    style: GoogleFonts.lato(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: "item2",
+                  child: Text(
+                    "History",
+                    style: GoogleFonts.lato(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: "item3",
+                  child: Text(
+                    "Reminder",
+                    style: GoogleFonts.lato(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: "item4",
+                  child: RowData(
+                    title: 'Order tracking',
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: "item5",
+                  child: RowData(
+                    title: 'Remove ads',
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: "item6",
+                  child: RowData(
+                    title: 'Get discount',
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: "item7",
+                  child: GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        'Terms and condition',
+                        style: GoogleFonts.lato(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      )),
+                ),
+              ];
+            },
+          );
+        }),
         iconTheme: const IconThemeData(color: ColorClass.secondayColor),
         elevation: 0,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: () => Get.to(() => ProfilePage()),
+              onTap: () => Get.to(() => const ProfilePage()),
               child: CircleAvatar(
                 radius: 16,
                 child: Image.asset(
@@ -152,8 +189,97 @@ class _RootPageState extends State<RootPage> {
         height: Get.height,
         width: Get.width,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(child: _pages[selectedpage]),
+          ],
+        ),
+      ),
+    );
+  }
+
+  subscriptionPopUp(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      backgroundColor: Colors.white,
+      content: SizedBox(
+        width: Adaptive.px(343),
+        height: Adaptive.px(360),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the popup
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Text('Subscription',
+                style: GoogleFonts.lato(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black)),
+            const SizedBox(height: 10),
+            Container(
+              width: Get.width,
+              height: Adaptive.px(76),
+              color: const Color(0xff04f4c2),
+              child: Center(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: '\$100',
+                          style: GoogleFonts.lato(
+                            fontSize: 32,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          )),
+                      TextSpan(
+                          text: '/month',
+                          style: GoogleFonts.lato(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: Get.height * 0.02),
+            Text(
+              "To remove add you need to subscribe. After the subscription you can continue your app without any hassle. ",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lato(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+            SizedBox(height: Get.height * 0.02),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CommonButton(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Get.to(() => CheckoutPage());
+                  },
+                  child: Text(
+                    'Subscribe',
+                    style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )),
+            )
           ],
         ),
       ),
@@ -164,25 +290,21 @@ class _RootPageState extends State<RootPage> {
 class RowData extends StatelessWidget {
   const RowData({
     Key? key,
-    required this.onTap,
     required this.title,
   }) : super(key: key);
   final String title;
-  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w400),
-          ),
-          Image.asset(IconClass.lock),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w400),
+        ),
+        Image.asset(IconClass.lock),
+      ],
     );
   }
 }
