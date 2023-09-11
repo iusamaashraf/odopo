@@ -41,4 +41,9 @@ class IconClass {
   static const mastercard = 'assets/icons/mastercard.png';
   static const paypal = 'assets/icons/paypal.png';
   static const webmoney = 'assets/icons/webmoney.png';
+  static const baloons = 'assets/images/balloon.png';
+  static const done = 'assets/icons/check.png';
+  static const clock = 'assets/icons/clock.png';
+  static const remind = 'assets/icons/remind.png';
+  static const repeat = 'assets/icons/repeat.png';
 }

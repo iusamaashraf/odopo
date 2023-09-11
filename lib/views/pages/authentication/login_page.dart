@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,6 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/auth_button.dart';
-import 'package:odopa/views/widgets/common_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -14,6 +14,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -27,22 +30,29 @@ class LoginPage extends StatelessWidget {
                 style: GoogleFonts.lato(
                   fontSize: 28,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : const Color(0xff03F4C2),
                 ),
               ),
-              SizedBox(height: Get.height * 0.02),
-              Text(
-                'Sign In to your account',
-                style: GoogleFonts.lato(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: ColorClass.primaryColor,
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
+              // SizedBox(height: Get.height * 0.02),
+              // Text(
+              //   'Sign In to your account',
+              //   style: GoogleFonts.lato(
+              //     fontSize: 18,
+              //     fontWeight: FontWeight.w400,
+              //     color: ColorClass.primaryColor,
+              //   ),
+              // ),
+              SizedBox(height: Get.height * 0.04),
               Image.asset(IconClass.logo),
               SizedBox(height: Get.height * 0.1),
               AuthButton(
+                isFilled:
+                    AdaptiveTheme.of(context).brightness == Brightness.light
+                        ? false
+                        : true,
                 icon: SvgPicture.asset(
                   IconClass.google,
                 ),
@@ -51,10 +61,16 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.02),
               AuthButton(
-                isFilled: true,
+                isFilled:
+                    AdaptiveTheme.of(context).brightness == Brightness.light
+                        ? true
+                        : false,
                 icon: SvgPicture.asset(
                   IconClass.apple,
-                  color: Colors.white,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.white
+                          : Colors.black,
                 ),
                 onPress: () => Get.offAll(() => RootPage()),
                 text: 'Continue with Apple',

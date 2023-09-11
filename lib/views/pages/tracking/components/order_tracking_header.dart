@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,7 +35,10 @@ class OrderTrackingHeader extends StatelessWidget {
                     style: GoogleFonts.lato(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black),
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                   Text(
                     '20 mar 2022',
@@ -68,7 +72,10 @@ class OrderTrackingHeader extends StatelessWidget {
               style: GoogleFonts.lato(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black),
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white),
             ),
           ],
         ),

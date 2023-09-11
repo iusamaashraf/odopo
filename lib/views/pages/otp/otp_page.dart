@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
 class OtpPage extends StatefulWidget {
@@ -63,6 +65,9 @@ class _OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -75,14 +80,20 @@ class _OtpPageState extends State<OtpPage> {
                 'Welcome',
                 style: GoogleFonts.lato(
                     fontSize: 14,
-                    color: ColorClass.secondayColor,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? ColorClass.secondayColor
+                            : const Color(0xffaeaeae),
                     fontWeight: FontWeight.w400),
               ),
               Text(
                 'Odopo',
                 style: GoogleFonts.lato(
                     fontSize: 28,
-                    color: ColorClass.primaryColor,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? ColorClass.primaryColor
+                            : const Color(0xff03f4c2),
                     fontWeight: FontWeight.w700),
               ),
               SizedBox(height: Get.height * 0.03),
@@ -93,7 +104,10 @@ class _OtpPageState extends State<OtpPage> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       fontSize: 16,
-                      color: Colors.black,
+                      color: AdaptiveTheme.of(context).brightness ==
+                              Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                       fontWeight: FontWeight.w400),
                 ),
               ),
@@ -101,6 +115,16 @@ class _OtpPageState extends State<OtpPage> {
               OTPTextField(
                 controller: otpController,
                 length: 4,
+                otpFieldStyle: OtpFieldStyle(
+                  backgroundColor:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? const Color(0xffd6d6d6)
+                          : const Color(0xff242424),
+                  borderColor:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? const Color(0xffd6d6d6)
+                          : const Color(0xff242424),
+                ),
                 width: MediaQuery.of(context).size.width,
                 fieldWidth: Get.width * 0.12,
                 style: const TextStyle(fontSize: (17)),
@@ -119,7 +143,11 @@ class _OtpPageState extends State<OtpPage> {
                         child: Text(
                           'Resend code in',
                           style: GoogleFonts.roboto(
-                              color: Colors.black, fontSize: 18),
+                              color: AdaptiveTheme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.black
+                                  : const Color(0xffaeaeae),
+                              fontSize: 18),
                         ),
                       ),
                     )
@@ -131,12 +159,20 @@ class _OtpPageState extends State<OtpPage> {
                             TextSpan(
                               text: 'Resend code in: ',
                               style: GoogleFonts.lato(
-                                  color: ColorClass.primaryColor, fontSize: 18),
+                                  color: AdaptiveTheme.of(context).brightness ==
+                                          Brightness.light
+                                      ? ColorClass.primaryColor
+                                      : const Color(0xff004e52),
+                                  fontSize: 18),
                             ),
                             TextSpan(
                                 text: _start.toString(),
-                                style: const TextStyle(
-                                    color: Colors.black,
+                                style: TextStyle(
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.black
+                                            : const Color(0xff989898),
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500))
                           ],
@@ -145,7 +181,7 @@ class _OtpPageState extends State<OtpPage> {
                     ),
               SizedBox(height: Get.height * 0.02),
               CommonButton(
-                onTap: () => Get.offAll(() => RootPage()),
+                onTap: () => Get.offAll(() => const RootPage()),
                 child: Text(
                   'Verify',
                   style: GoogleFonts.lato(

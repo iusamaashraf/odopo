@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +20,9 @@ class HomePage extends StatelessWidget {
           Text(
             'Odopo',
             style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                color: ColorClass.primaryColor,
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? ColorClass.primaryColor
+                    : Colors.white,
                 fontSize: 28,
                 fontWeight: FontWeight.w700),
           ),
@@ -27,8 +30,12 @@ class HomePage extends StatelessWidget {
           Text(
             'By creating a profile of your spouse you can easily know your partner’s wishes and get an opportunity to win his/her heart',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+            style: GoogleFonts.lato(
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : const Color(0xffaeaeae),
+                fontSize: 16,
+                fontWeight: FontWeight.w600),
           ),
           SizedBox(height: Get.height * 0.04),
           Image.asset('assets/images/empty_home.png'),

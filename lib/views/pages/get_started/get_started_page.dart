@@ -1,9 +1,11 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/authentication/login_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -11,6 +13,9 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -18,23 +23,30 @@ class GetStartedPage extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Positioned(
-              top: Get.height * 0.1,
+              top: Get.height * 0.05,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(IconClass.getsrated),
+                  SizedBox(height: Get.height * 0.1),
                   Text(
                     'Welcome to',
                     style: GoogleFonts.lato(
                         fontSize: 14,
-                        color: ColorClass.secondayColor,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? ColorClass.secondayColor
+                            : const Color(0xffAEAEAE),
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
                     'Odopo',
                     style: GoogleFonts.lato(
                         fontSize: 28,
-                        color: ColorClass.primaryColor,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? ColorClass.primaryColor
+                            : const Color(0xff03F4C2),
                         fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: Get.height * 0.03),
@@ -45,7 +57,10 @@ class GetStartedPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
                           fontSize: 16,
-                          color: Colors.black,
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? Colors.black
+                              : const Color(0xffAEAEAE),
                           fontWeight: FontWeight.w400),
                     ),
                   ),
@@ -53,12 +68,12 @@ class GetStartedPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: Get.height * 0.1,
+              bottom: Get.height * 0.03,
               child: GestureDetector(
                 onTap: () => Get.offAll(() => const LoginPage()),
                 child: Container(
                   height: 44,
-                  width: 149,
+                  width: Adaptive.px(343),
                   decoration: BoxDecoration(
                     color: ColorClass.primaryColor,
                     borderRadius: BorderRadius.circular(30),
@@ -73,18 +88,11 @@ class GetStartedPage extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.w400),
                       ),
-                      const SizedBox(width: 20),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundColor:
-                            ColorClass.secondayColor.withOpacity(.5),
-                        child: const Center(
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                        ),
+                      const SizedBox(width: 10),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 18,
                       ),
                     ],
                   ),

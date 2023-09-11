@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,21 +27,32 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         leading: IconButton(
             onPressed: () => Get.off(() => const RootPage()),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             )),
         centerTitle: true,
         title: Text(
           'Order history',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
       ),
       body: SizedBox(
@@ -70,14 +82,20 @@ class _HistoryPageState extends State<HistoryPage> {
                             style: GoogleFonts.lato(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black),
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.black
+                                    : const Color(0xffaeaeae)),
                           ),
                           const SizedBox(height: 5),
                           Container(
                             height: 2,
                             width: 27,
                             color: index == selectedIndex
-                                ? ColorClass.primaryColor
+                                ? AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? ColorClass.primaryColor
+                                    : const Color(0xffaeaeae)
                                 : Colors.transparent,
                           ),
                         ],
@@ -94,10 +112,18 @@ class _HistoryPageState extends State<HistoryPage> {
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.all(12),
+                    margin: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.white
+                            : const Color(0xff1b1d1d),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.grey.shade300)),
+                        border: Border.all(
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.grey.shade300
+                                : const Color(0xff242424))),
                     child: Column(
                       children: [
                         Row(
@@ -111,13 +137,16 @@ class _HistoryPageState extends State<HistoryPage> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: Get.width * 0.03),
+                            SizedBox(width: Get.width * 0.01),
                             Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: Get.width * 0.65,
+                                  width: Get.width * 0.6,
                                   child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
@@ -125,7 +154,11 @@ class _HistoryPageState extends State<HistoryPage> {
                                         historyLits[index].title,
                                         style: GoogleFonts.lato(
                                             fontSize: 14,
-                                            color: Colors.black,
+                                            color: AdaptiveTheme.of(context)
+                                                        .brightness ==
+                                                    Brightness.light
+                                                ? Colors.black
+                                                : Colors.white,
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
@@ -156,8 +189,10 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),
                                 SizedBox(height: Get.height * 0.015),
                                 SizedBox(
-                                  width: Get.width * 0.65,
+                                  width: Get.width * 0.6,
                                   child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [

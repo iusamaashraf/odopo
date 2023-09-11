@@ -1,8 +1,10 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/animated_switch.dart';
 
@@ -17,32 +19,53 @@ class _SettingsPageState extends State<SettingsPage> {
   bool isEnabledNotification = false;
   bool isRemind = false;
   bool isOneTapWishes = false;
-  bool _isLightThemeSelected = true;
+  bool isChangeTheme = false;
 
-  void _toggleTheme(bool isLightTheme) {
+  void _toggleTheme(bool isLightTheme) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (isLightTheme) {
+      prefs.setString("theme", "light");
+      // ignore: use_build_context_synchronously
+      AdaptiveTheme.of(context).setLight();
+    } else {
+      prefs.setString("theme", "dark");
+      // ignore: use_build_context_synchronously
+      AdaptiveTheme.of(context).setDark();
+    }
     setState(() {
-      _isLightThemeSelected = isLightTheme;
+      isChangeTheme = isLightTheme;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : const Color(0xff151515),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Get.off(() => RootPage()),
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.black
+                : Colors.white,
           ),
         ),
         title: Text(
           'Settings',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         centerTitle: true,
       ),
@@ -56,8 +79,13 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               Text(
                 'Notification',
-                style:
-                    GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
+                style: GoogleFonts.lato(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white),
               ),
               SizedBox(height: Get.height * 0.025),
               Row(
@@ -67,7 +95,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   Text(
                     'Notification enable',
                     style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                   const AnimatedSwitch(),
                 ],
@@ -82,7 +115,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   Text(
                     'Remind me of occassion',
                     style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                   const AnimatedSwitch(),
                 ],
@@ -97,7 +135,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   Text(
                     'Notification Sound',
                     style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                   const AnimatedSwitch(),
                 ],
@@ -112,7 +155,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   Text(
                     'One-tap wishes',
                     style: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                   const AnimatedSwitch(),
                 ],
@@ -122,91 +170,26 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: Get.height * 0.025),
               Text(
                 'App Theme',
-                style:
-                    GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w600),
+                style: GoogleFonts.lato(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white),
               ),
               SizedBox(height: Get.height * 0.025),
-              // Row(
-              //   children: [
-              //     GestureDetector(
-              //       onTap: () {
-              //         setState(() {
-              //           isLightTheme = true;
-              //         });
-              //       },
-              //       child: Container(
-              //         height: 20,
-              //         width: 20,
-              //         decoration: BoxDecoration(
-              //           color: isLightTheme
-              //               ? ColorClass.primaryColor
-              //               : Colors.white,
-              //           border: Border.all(color: ColorClass.primaryColor),
-              //           borderRadius: BorderRadius.circular(4),
-              //         ),
-              //         child: isLightTheme
-              //             ? const Center(
-              //                 child: Icon(
-              //                   Icons.done,
-              //                   size: 14,
-              //                   color: Colors.white,
-              //                 ),
-              //               )
-              //             : const SizedBox(),
-              //       ),
-              //     ),
-              //     const SizedBox(width: 5),
-              //     Text(
-              //       'Light',
-              //       style: GoogleFonts.lato(
-              //           fontSize: 14, fontWeight: FontWeight.w500),
-              //     ),
-              //     SizedBox(width: Get.width * 0.05),
-              //     GestureDetector(
-              //       onTap: () {
-              //         setState(() {
-              //           isLightTheme = false;
-              //         });
-              //       },
-              //       child: Container(
-              //         height: 20,
-              //         width: 20,
-              //         decoration: BoxDecoration(
-              //           color: !isLightTheme
-              //               ? ColorClass.primaryColor
-              //               : Colors.white,
-              //           border: Border.all(color: ColorClass.primaryColor),
-              //           borderRadius: BorderRadius.circular(4),
-              //         ),
-              //         child: !isLightTheme
-              //             ? const Center(
-              //                 child: Icon(
-              //                   Icons.done,
-              //                   size: 14,
-              //                   color: Colors.white,
-              //                 ),
-              //               )
-              //             : const SizedBox(),
-              //       ),
-              //     ),
-              //     const SizedBox(width: 5),
-              //     Text(
-              //       'Dark',
-              // style: GoogleFonts.lato(
-              //     fontSize: 14, fontWeight: FontWeight.w500),
-              //     ),
-              //   ],
-              // ),
               RadioListTile<bool>(
                 title: Text(
                   'Light',
                   style: GoogleFonts.lato(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),
-                value: true,
-                groupValue: _isLightThemeSelected,
-                onChanged: (value) {
-                  _toggleTheme(value!);
+                value: isChangeTheme == true,
+                activeColor: ColorClass.primaryColor,
+                groupValue: true,
+                onChanged: (b) {
+                  _toggleTheme(true);
                 },
               ),
               RadioListTile<bool>(
@@ -215,10 +198,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: GoogleFonts.lato(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),
-                value: false,
-                groupValue: _isLightThemeSelected,
-                onChanged: (value) {
-                  _toggleTheme(value!);
+                value: isChangeTheme == false,
+                activeColor: ColorClass.primaryColor,
+                groupValue: true,
+                onChanged: (b) {
+                  _toggleTheme(false);
                 },
               ),
               const Spacer(),
@@ -228,11 +212,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: ElevatedButton(
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(0),
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
                       foregroundColor: MaterialStateProperty.all(Colors.black),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.black),
+                          side: const BorderSide(color: Colors.red),
                           borderRadius: BorderRadius.circular(40),
                         ),
                       ),

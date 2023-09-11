@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,20 +38,31 @@ class _CreateOtherEventPageState extends State<CreateOtherEventPage> {
     final DateFormat formatter = DateFormat('MMMM dd, yyyy');
     final String formatted = formatter.format(selectedDate);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         elevation: 0,
         leading: IconButton(
             onPressed: () => Get.back(),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             )),
         title: Text(
           'New event',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         centerTitle: true,
       ),
@@ -88,8 +100,16 @@ class _CreateOtherEventPageState extends State<CreateOtherEventPage> {
                   width: Get.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey, width: 1.5),
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : ColorClass.darkScaffoldColor,
+                    border: Border.all(
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.grey
+                            : const Color(0xff242424),
+                        width: 1.5),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

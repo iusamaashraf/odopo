@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:odopa/constants/colors.dart';
 
@@ -38,9 +39,12 @@ class _AnimatedSwitchState extends State<AnimatedSwitch> {
               child: Container(
                 width: 15,
                 height: 15,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.white
+                          : Colors.black,
                 ),
               ),
             ),

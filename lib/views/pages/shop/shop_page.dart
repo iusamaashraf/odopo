@@ -1,8 +1,10 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/shop/shopping_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({super.key});
@@ -26,26 +28,39 @@ class ShopPage extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Get.to(
-                  () => ShoppingPage(storeName: 'Amazon'),
+                  () => const ShoppingPage(storeName: 'Amazon'),
                 ),
                 child: Container(
-                  width: 137,
+                  width: Adaptive.px(151),
                   height: 166,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey.shade300),
+                    border: Border.all(
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.grey.shade300
+                            : const Color(0xff242424)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(IconClass.amazon),
+                      Image.asset(
+                        IconClass.amazon,
+                        // color: AdaptiveTheme.of(context).brightness ==
+                        //         Brightness.light
+                        //     ? Colors.black
+                        //     : Color(0xff242424),
+                      ),
                       SizedBox(height: Get.height * 0.02),
                       Text(
                         'Amazon',
                         style: GoogleFonts.lato(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.black
+                                : Colors.white,
                             fontWeight: FontWeight.w500),
                       )
                     ],
@@ -55,7 +70,7 @@ class ShopPage extends StatelessWidget {
               SizedBox(width: Get.width * 0.02),
               GestureDetector(
                 onTap: () => Get.to(
-                  () => ShoppingPage(storeName: 'Other'),
+                  () => const ShoppingPage(storeName: 'Other'),
                 ),
                 child: Container(
                   width: 137,
@@ -63,7 +78,11 @@ class ShopPage extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey.shade300),
+                    border: Border.all(
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.grey.shade300
+                            : const Color(0xff242424)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +93,10 @@ class ShopPage extends StatelessWidget {
                         'Others',
                         style: GoogleFonts.lato(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.black
+                                : Colors.white,
                             fontWeight: FontWeight.w500),
                       )
                     ],

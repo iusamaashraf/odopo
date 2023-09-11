@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +18,13 @@ class PartnerWishlist extends StatelessWidget {
         height: Get.height * 0.06,
         width: Get.width,
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
+            color: AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : const Color(0xff1b1d1d),
+            border: Border.all(
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? Colors.grey.shade300
+                    : const Color(0xff242424)),
             borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -27,10 +34,17 @@ class PartnerWishlist extends StatelessWidget {
               Text(
                 'Check your Partner’s Wishlist',
                 style: GoogleFonts.lato(
-                    color: Colors.black, fontWeight: FontWeight.w600),
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
+                    fontWeight: FontWeight.w600),
               ),
-              const Icon(Icons.arrow_forward_ios,
-                  color: ColorClass.primaryColor),
+              Icon(Icons.arrow_forward_ios,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? ColorClass.primaryColor
+                          : Colors.white),
             ],
           ),
         ),

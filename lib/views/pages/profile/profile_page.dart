@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -68,20 +69,31 @@ class _ProfilePageState extends State<ProfilePage> {
     final DateFormat formatter = DateFormat('MMMM dd, yyyy');
     final String formatted = formatter.format(selectedDate);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         elevation: 0,
         leading: IconButton(
             onPressed: () => Get.back(),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             )),
         title: Text(
           'Create Profile',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         centerTitle: true,
         actions: [
@@ -115,7 +127,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: SizedBox(
                           child: CircleAvatar(
                             radius: 50,
-                            backgroundColor: Colors.white,
+                            backgroundColor:
+                                AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.white
+                                    : const Color(0xff242424),
                             backgroundImage: FileImage(image!),
                           ),
                         ),
@@ -128,13 +144,25 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 105,
                           width: 105,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AdaptiveTheme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.white
+                                  : const Color(0xff242424),
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: Colors.grey,
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.grey
+                                    : Colors.grey.shade600,
                               )),
                           child: Center(
-                            child: SvgPicture.asset(IconClass.camera),
+                            child: SvgPicture.asset(
+                              IconClass.camera,
+                              color: AdaptiveTheme.of(context).brightness ==
+                                      Brightness.light
+                                  ? const Color(0xff004E52)
+                                  : const Color(0xff03F4C2),
+                            ),
                           ),
                         )),
                 SizedBox(height: Get.height * 0.06),
@@ -175,7 +203,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           .subtitle1!
                           .copyWith(color: ColorClass.secondayColor),
                     ),
-                    const Icon(Icons.add, color: ColorClass.primaryColor),
+                    Icon(Icons.add,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? ColorClass.primaryColor
+                            : Colors.white),
                   ],
                 ),
                 SizedBox(height: Get.height * 0.01),
@@ -184,14 +216,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: Get.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey, width: 1.5)),
+                      color: AdaptiveTheme.of(context).brightness ==
+                              Brightness.light
+                          ? Colors.white
+                          : ColorClass.darkScaffoldColor,
+                      border: Border.all(
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? Colors.grey
+                              : const Color(0xff242424),
+                          width: 1.5)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        icon: const Icon(Icons.keyboard_arrow_down_sharp,
-                            color: ColorClass.primaryColor),
+                        icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? ColorClass.primaryColor
+                                : Colors.white),
                         hint: Text('Please choose a event',
                             style: Theme.of(context)
                                 .textTheme
@@ -212,7 +255,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                   .textTheme
                                   .subtitle1!
                                   .copyWith(
-                                    color: ColorClass.primaryColor,
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? ColorClass.primaryColor
+                                            : Colors.white,
                                   ),
                             ),
                           );
@@ -238,8 +285,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: Get.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey, width: 1.5),
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.white
+                            : ColorClass.darkScaffoldColor,
+                        border: Border.all(
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.grey
+                                : const Color(0xff242424),
+                            width: 1.5),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -255,7 +310,11 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             GestureDetector(
                                 onTap: _selectDate,
-                                child: Image.asset(IconClass.calendar))
+                                child: Image.asset(
+                                    AdaptiveTheme.of(context).brightness ==
+                                            Brightness.light
+                                        ? IconClass.calendar
+                                        : 'assets/icons/calendardark.png'))
                           ],
                         ),
                       ),

@@ -1,6 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
 
@@ -12,20 +14,31 @@ class AddNewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         leading: IconButton(
             onPressed: () => Get.back(),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             )),
         title: Text(
           'Add gift item',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         centerTitle: true,
       ),
@@ -36,6 +49,7 @@ class AddNewPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonField(
                   controller: productNameController,
@@ -55,11 +69,25 @@ class AddNewPage extends StatelessWidget {
                   },
                   keyBoardType: TextInputType.name,
                 ),
+                Text(
+                  'Add any note',
+                  style: GoogleFonts.lato(
+                      color: AdaptiveTheme.of(context).brightness ==
+                              Brightness.light
+                          ? const Color(0xff5d5d5d)
+                          : const Color(0xffaeaeae)),
+                ),
+                const SizedBox(height: 10),
                 Container(
                   height: Get.height * 0.2,
                   width: Get.width,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
+                    border: Border.all(
+                      color: AdaptiveTheme.of(context).brightness ==
+                              Brightness.light
+                          ? Colors.grey.shade300
+                          : const Color(0xff242424),
+                    ),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: TextFormField(

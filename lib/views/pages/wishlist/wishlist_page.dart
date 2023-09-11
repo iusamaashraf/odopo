@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +48,10 @@ class _WishListPageState extends State<WishListPage> {
                           headerList[index].title,
                           style: GoogleFonts.lato(
                               fontSize: 16,
-                              color: Colors.black,
+                              color: AdaptiveTheme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.black
+                                  : const Color(0xffaeaeae),
                               fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(height: 6),
@@ -55,7 +59,10 @@ class _WishListPageState extends State<WishListPage> {
                             ? Container(
                                 width: 27,
                                 height: 2,
-                                color: ColorClass.primaryColor,
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? ColorClass.primaryColor
+                                    : const Color(0xffaeaeae),
                               )
                             : const SizedBox(),
                       ],
@@ -79,7 +86,11 @@ class _WishListPageState extends State<WishListPage> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      border: Border.all(color: ColorClass.primaryColor),
+                      border: Border.all(
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? ColorClass.primaryColor
+                              : const Color(0xff03f4c2)),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Center(
@@ -88,7 +99,10 @@ class _WishListPageState extends State<WishListPage> {
                         style: GoogleFonts.lato(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
-                            color: ColorClass.primaryColor),
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? ColorClass.primaryColor
+                                : const Color(0xff03f4c2)),
                       ),
                     ),
                   ),

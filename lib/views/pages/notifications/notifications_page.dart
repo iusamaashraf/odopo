@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:odopa/models/notifications_model.dart';
@@ -31,7 +32,11 @@ class NotificationsPage extends StatelessWidget {
                             child: Text(notificationsList[index].title)),
                       ],
                     ),
-                    const Divider(color: Colors.grey),
+                    Divider(
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.grey
+                            : Colors.grey.shade700),
                   ],
                 ),
               );

@@ -1,6 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/models/remainder_model.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
@@ -11,21 +13,32 @@ class RemainderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.grey.shade50
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.grey.shade50
+                : ColorClass.darkScaffoldColor,
         leading: IconButton(
             onPressed: () => Get.off(() => const RootPage()),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             )),
         centerTitle: true,
         title: Text(
           'Reminder',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
       ),
       body: SizedBox(
@@ -43,9 +56,16 @@ class RemainderPage extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.white
+                            : const Color(0xff1b1d1d),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.grey.shade300
+                                : const Color(0xff242424)),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +78,17 @@ class RemainderPage extends StatelessWidget {
                                 style: GoogleFonts.lato(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.black),
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.black
+                                            : Colors.white),
                               ),
                               PopupMenuButton<String>(
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.white
+                                    : ColorClass.darkScaffoldColor,
                                 onSelected: (value) {},
                                 itemBuilder: (BuildContext context) {
                                   return <PopupMenuEntry<String>>[
@@ -71,7 +99,11 @@ class RemainderPage extends StatelessWidget {
                                         style: GoogleFonts.lato(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
-                                            color: Colors.black),
+                                            color: AdaptiveTheme.of(context)
+                                                        .brightness ==
+                                                    Brightness.light
+                                                ? Colors.black
+                                                : Colors.white),
                                       ),
                                     ),
                                     PopupMenuItem<String>(
@@ -81,7 +113,11 @@ class RemainderPage extends StatelessWidget {
                                         style: GoogleFonts.lato(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
-                                            color: Colors.black),
+                                            color: AdaptiveTheme.of(context)
+                                                        .brightness ==
+                                                    Brightness.light
+                                                ? Colors.black
+                                                : Colors.white),
                                       ),
                                     ),
                                     // Add more PopupMenuItem widgets as needed

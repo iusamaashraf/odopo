@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
+import 'package:odopa/controllers/subscription_controller.dart';
 import 'package:odopa/views/pages/checkout/checkout_page.dart';
 import 'package:odopa/views/pages/event/create_event_page.dart';
 import 'package:odopa/views/pages/history/history_page.dart';
@@ -28,6 +30,8 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  final SubscriptionController subscriptionController =
+      Get.put(SubscriptionController());
   int selectedpage = 0;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final _pages = [
@@ -40,13 +44,27 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _key,
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
         leading: Builder(builder: (BuildContext context) {
           return PopupMenuButton<String>(
-            icon: SvgPicture.asset(IconClass.drawer),
+            color: AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : ColorClass.darkScaffoldColor,
+            icon: SvgPicture.asset(
+              IconClass.drawer,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+            ),
             onSelected: (value) {
               if (value == "item1") {
                 Navigator.pop(context);
@@ -61,7 +79,6 @@ class _RootPageState extends State<RootPage> {
                 Navigator.pop(context);
                 Get.to(() => const TrackingPage());
               } else if (value == "item5") {
-                print('object');
                 showDialog(
                   barrierDismissible: false,
                   context: context,
@@ -84,7 +101,10 @@ class _RootPageState extends State<RootPage> {
                     style: GoogleFonts.lato(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black),
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
                 PopupMenuItem<String>(
@@ -94,7 +114,10 @@ class _RootPageState extends State<RootPage> {
                     style: GoogleFonts.lato(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black),
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
                 PopupMenuItem<String>(
@@ -104,7 +127,10 @@ class _RootPageState extends State<RootPage> {
                     style: GoogleFonts.lato(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: Colors.black),
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
                 const PopupMenuItem<String>(
@@ -113,10 +139,26 @@ class _RootPageState extends State<RootPage> {
                     title: 'Order tracking',
                   ),
                 ),
-                const PopupMenuItem<String>(
+                PopupMenuItem<String>(
                   value: "item5",
-                  child: RowData(
-                    title: 'Remove ads',
+                  // child: RowData(
+                  //   title: 'Remove ads',
+                  // ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Remove ads',
+                        style: GoogleFonts.lato(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      ),
+                      subscriptionController.isSubscribed.value
+                          ? const Icon(
+                              Icons.abc_outlined,
+                              color: ColorClass.primaryColor,
+                            )
+                          : Image.asset(IconClass.lock),
+                    ],
                   ),
                 ),
                 const PopupMenuItem<String>(
@@ -159,8 +201,13 @@ class _RootPageState extends State<RootPage> {
       ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
-        activeColor: ColorClass.primaryColor,
-        backgroundColor: Colors.white,
+        activeColor: AdaptiveTheme.of(context).brightness == Brightness.light
+            ? ColorClass.primaryColor
+            : ColorClass.primaryColor,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : const Color(0xff141819),
         elevation: 10,
         color: ColorClass.primaryColor,
         height: 70,
@@ -201,7 +248,9 @@ class _RootPageState extends State<RootPage> {
   subscriptionPopUp(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      backgroundColor: Colors.white,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       content: SizedBox(
         width: Adaptive.px(343),
         height: Adaptive.px(360),
@@ -211,9 +260,12 @@ class _RootPageState extends State<RootPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.close,
-                    color: Colors.black,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the popup
@@ -226,8 +278,11 @@ class _RootPageState extends State<RootPage> {
                 style: GoogleFonts.lato(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Colors.black)),
-            const SizedBox(height: 10),
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white)),
+            const SizedBox(height: 20),
             Container(
               width: Get.width,
               height: Adaptive.px(76),
@@ -262,7 +317,10 @@ class _RootPageState extends State<RootPage> {
               style: GoogleFonts.lato(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black),
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : const Color(0xffaeaeae)),
             ),
             SizedBox(height: Get.height * 0.02),
             Padding(
@@ -270,7 +328,7 @@ class _RootPageState extends State<RootPage> {
               child: CommonButton(
                   onTap: () {
                     Navigator.pop(context);
-                    Get.to(() => CheckoutPage());
+                    Get.to(() => const CheckoutPage());
                   },
                   child: Text(
                     'Subscribe',
@@ -301,7 +359,12 @@ class RowData extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w400),
+          style: GoogleFonts.lato(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         Image.asset(IconClass.lock),
       ],

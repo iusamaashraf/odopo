@@ -1,6 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -14,22 +16,36 @@ class ShoppingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor:
+            AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.grey.shade50
+                : ColorClass.darkScaffoldColor,
         elevation: 0,
         centerTitle: true,
         title: Text(
           'Shop',
           style: GoogleFonts.lato(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white),
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Image.asset(IconClass.search),
+            icon: Image.asset(
+              IconClass.search,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+            ),
           ),
         ],
       ),
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.grey.shade50
+          : ColorClass.darkScaffoldColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -41,7 +57,10 @@ class ShoppingPage extends StatelessWidget {
               Text(
                 'Browse commonly gifted items on $storeName',
                 style: GoogleFonts.lato(
-                    color: Colors.black,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: 16),
               ),
@@ -211,9 +230,14 @@ class StoreTile extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : const Color(0xff1b1d1d),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey.shade300)),
+            border: Border.all(
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? Colors.grey.shade300
+                    : const Color(0xff242424))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -222,7 +246,10 @@ class StoreTile extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.lato(
-                  color: Colors.black,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w500),
             )

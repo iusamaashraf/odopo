@@ -1,6 +1,8 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/pages/otp/otp_page.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/common_button.dart';
@@ -23,6 +25,9 @@ class SendInvitationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : ColorClass.darkScaffoldColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -34,10 +39,12 @@ class SendInvitationPage extends StatelessWidget {
             Align(
               child: Text(
                 'Julia',
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
+                    fontWeight: FontWeight.w600),
               ),
             ),
             const SizedBox(height: 10),
@@ -47,7 +54,15 @@ class SendInvitationPage extends StatelessWidget {
               child: Container(
                 width: Get.width,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.white
+                          : const Color(0xff1b1d1d),
+                  border: Border.all(
+                      color: AdaptiveTheme.of(context).brightness ==
+                              Brightness.light
+                          ? Colors.grey.shade300
+                          : const Color(0xff1b1d1d)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
@@ -58,7 +73,10 @@ class SendInvitationPage extends StatelessWidget {
                           alignment: Alignment.topRight,
                           child: Image.asset(
                             'assets/icons/edit.png',
-                            color: Colors.black,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? Colors.black
+                                : Colors.white,
                           )),
                       const SizedBox(height: 10),
                       const InvitationRowData(
@@ -121,20 +139,29 @@ class InvitationRowData extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.lato(
-                  color: Colors.black,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500),
             ),
             Text(
               subtitle,
               style: GoogleFonts.lato(
-                  color: Colors.black,
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500),
             ),
           ],
         ),
-        const Divider(color: Colors.grey),
+        Divider(
+            color: AdaptiveTheme.of(context).brightness == Brightness.light
+                ? Colors.grey
+                : Colors.grey.shade700),
         const SizedBox(height: 10),
       ],
     );
