@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
+import 'package:odopa/views/pages/profile/profile_page.dart';
 import 'package:odopa/views/widgets/auth_button.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
           SizedBox(height: Get.height * 0.04),
           Image.asset('assets/images/empty_home.png'),
           CommonButton(
-            onTap: () {},
+            onTap: () => Get.to(() => ProfilePage()),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

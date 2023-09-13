@@ -23,6 +23,22 @@ class CreateEventPage extends StatefulWidget {
 class _CreateEventPageState extends State<CreateEventPage> {
   int selectedIndex = 0;
   DateTime selectedDate = DateTime.now();
+
+  DateTime currentDate = DateTime.now();
+  List<String> monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
   final TextEditingController shortNoteController = TextEditingController();
   final TextEditingController typeController = TextEditingController();
   final TextEditingController setReminderController = TextEditingController();

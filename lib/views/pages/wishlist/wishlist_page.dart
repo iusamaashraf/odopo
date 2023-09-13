@@ -120,11 +120,16 @@ class _WishListPageState extends State<WishListPage> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ColorClass.primaryColor.withOpacity(.4),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                              color: const Color(0xffFCFFFF),
+                              border: Border.all(
+                                color: const Color(0xffE5E5E5),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Color(0xffFCFFFF), blurRadius: 8),
+                              ]),
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             child: Column(

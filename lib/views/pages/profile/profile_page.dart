@@ -15,6 +15,7 @@ import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/profile/send_invitation/send_invitvitation_page.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
+import 'package:odopa/views/widgets/my_calendar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -27,6 +28,8 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController interestController = TextEditingController();
+  DateTime selectedDate = DateTime.now();
+
   File? image;
   Future pickImage(ImageSource sr) async {
     try {
@@ -45,24 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
 //drop down implementation
   final List<String> _locations = ['Birthday', 'Anniversary', 'First meet'];
   String? _selectedLocation;
-
-  // set date
-
-  DateTime selectedDate = DateTime.now();
-
-  void _selectDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -305,11 +290,20 @@ class _ProfilePageState extends State<ProfilePage> {
                               Expanded(
                                 child: Text(
                                   formatted,
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: AdaptiveTheme.of(context)
+                                                  .brightness ==
+                                              Brightness.light
+                                          ? Colors.black
+                                          : Colors.white),
                                 ),
                               ),
                             GestureDetector(
-                                onTap: _selectDate,
+                                // onTap: _selectDate,
+                                onTap: () {
+                                  MyCalendarClass().customCalendar(context);
+                                },
                                 child: Image.asset(
                                     AdaptiveTheme.of(context).brightness ==
                                             Brightness.light

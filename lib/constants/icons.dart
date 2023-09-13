@@ -11,9 +11,12 @@ class IconClass {
   static const getsrated = 'assets/icons/get_started.png';
   static const document = 'assets/icons/document.png';
   static const home = 'assets/icons/home.svg';
+  static const inactiveHome = 'assets/icons/inactive_home.svg';
   static const wishlist = 'assets/icons/wishlist.svg';
+  static const activeWishlist = 'assets/icons/active_fav.svg';
   static const shop = 'assets/icons/shop.svg';
   static const notification = 'assets/icons/notification.svg';
+  static const inactiveNotification = 'assets/icons/inactive_notification.svg';
   static const event = 'assets/icons/event.png';
   static const amazon = 'assets/icons/amazon.png';
   static const other = 'assets/icons/other.png';

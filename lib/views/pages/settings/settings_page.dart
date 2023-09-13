@@ -19,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
   bool isEnabledNotification = false;
   bool isRemind = false;
   bool isOneTapWishes = false;
-  bool isChangeTheme = false;
+  bool isChangeTheme = true;
 
   void _toggleTheme(bool isLightTheme) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

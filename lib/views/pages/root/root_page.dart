@@ -202,27 +202,51 @@ class _RootPageState extends State<RootPage> {
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
         activeColor: AdaptiveTheme.of(context).brightness == Brightness.light
-            ? ColorClass.primaryColor
+            ? const Color(0xff004E52)
             : ColorClass.primaryColor,
         backgroundColor:
             AdaptiveTheme.of(context).brightness == Brightness.light
                 ? Colors.white
                 : const Color(0xff141819),
-        elevation: 10,
-        color: ColorClass.primaryColor,
+        elevation: 20,
+        color: const Color(0xff005456),
         height: 70,
         shadowColor: Colors.black12,
         curveSize: 95,
         items: [
-          TabItem(icon: SvgPicture.asset(IconClass.home), title: 'Home'),
           TabItem(
-              icon: SvgPicture.asset(IconClass.wishlist), title: 'Wishlist'),
+            icon: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: SvgPicture.asset(IconClass.inactiveHome, height: 20),
+            ),
+            activeIcon: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: SvgPicture.asset(IconClass.home, height: 20),
+            ),
+            title: 'Home',
+          ),
+          TabItem(
+            icon: SvgPicture.asset(IconClass.wishlist),
+            activeIcon: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: SvgPicture.asset(IconClass.activeWishlist),
+            ),
+            title: 'Wishlist',
+          ),
           const TabItem(
               icon: Icon(Icons.add, size: 29, color: Colors.white),
               title: 'Create Event'),
-          TabItem(icon: SvgPicture.asset(IconClass.shop), title: 'Shop'),
+          TabItem(
+            icon: SvgPicture.asset(IconClass.shop),
+            activeIcon: SvgPicture.asset(
+              IconClass.shop,
+              color: ColorClass.primaryColor,
+            ),
+            title: 'Shop',
+          ),
           TabItem(
               icon: SvgPicture.asset(IconClass.notification),
+              activeIcon: SvgPicture.asset(IconClass.inactiveNotification),
               title: 'Notification'),
         ],
         initialActiveIndex: selectedpage,
