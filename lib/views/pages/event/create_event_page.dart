@@ -9,6 +9,7 @@ import 'package:odopa/models/wish_list_header_model.dart';
 import 'package:odopa/views/pages/settings/components/animated_switch.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
+import 'package:odopa/views/widgets/my_calendar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'components/event_field.dart';
@@ -24,21 +25,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
   int selectedIndex = 0;
   DateTime selectedDate = DateTime.now();
 
-  DateTime currentDate = DateTime.now();
-  List<String> monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
   final TextEditingController shortNoteController = TextEditingController();
   final TextEditingController typeController = TextEditingController();
   final TextEditingController setReminderController = TextEditingController();
@@ -202,7 +188,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           ),
                         ),
                       GestureDetector(
-                          onTap: _selectDate,
+                          onTap: () {
+                            MyCalendarClass().customCalendar(context);
+                          },
                           child: Image.asset(IconClass.calendar))
                     ],
                   ),

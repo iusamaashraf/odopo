@@ -7,6 +7,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
+import 'package:odopa/views/widgets/my_calendar.dart';
 
 class CreateOtherEventPage extends StatefulWidget {
   const CreateOtherEventPage({super.key});
@@ -124,7 +125,9 @@ class _CreateOtherEventPageState extends State<CreateOtherEventPage> {
                             ),
                           ),
                         GestureDetector(
-                            onTap: _selectDate,
+                            onTap: () {
+                              MyCalendarClass().customCalendar(context);
+                            },
                             child: Image.asset(IconClass.calendar))
                       ],
                     ),
