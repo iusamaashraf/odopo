@@ -27,13 +27,19 @@ class _PartnerWishlistPageState extends State<PartnerWishlistPage> {
         elevation: 0,
         leading: IconButton(
             onPressed: () => Get.back(),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: ColorClass.textColor,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? ColorClass.textColor
+                  : Colors.white,
             )),
         title: Text(
           'Wishlist',
-          style: GoogleFonts.lato(fontSize: 20, color: ColorClass.textColor),
+          style: GoogleFonts.lato(
+              fontSize: 20,
+              color: AdaptiveTheme.of(context).brightness == Brightness.light
+                  ? ColorClass.textColor
+                  : Colors.white),
         ),
         centerTitle: true,
         actions: [
