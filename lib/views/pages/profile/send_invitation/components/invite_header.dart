@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class InviteHeader extends StatelessWidget {
   const InviteHeader({
@@ -15,10 +16,11 @@ class InviteHeader extends StatelessWidget {
           Image.asset(
             'assets/images/Cover photo.png',
             fit: BoxFit.cover,
+            height: Adaptive.px(226),
             width: Get.width,
           ),
           Positioned(
-            bottom: 10,
+            top: Adaptive.px(172),
             left: 0,
             right: 0,
             child: CircleAvatar(

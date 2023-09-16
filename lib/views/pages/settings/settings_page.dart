@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/animated_switch.dart';
@@ -50,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 : ColorClass.darkScaffoldColor,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Get.off(() => RootPage()),
+          onPressed: () => Get.off(() => const RootPage()),
           icon: Icon(
             Icons.arrow_back,
             color: AdaptiveTheme.of(context).brightness == Brightness.light
@@ -64,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
+                  ? const Color(0xff181F20)
                   : Colors.white),
         ),
         centerTitle: true,
@@ -73,10 +74,11 @@ class _SettingsPageState extends State<SettingsPage> {
         height: Get.height,
         width: Get.width,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: Adaptive.px(24)),
               Text(
                 'Notification',
                 style: GoogleFonts.lato(
@@ -87,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             ? Colors.black
                             : Colors.white),
               ),
-              SizedBox(height: Get.height * 0.025),
+              SizedBox(height: Adaptive.px(24)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,9 +107,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   const AnimatedSwitch(),
                 ],
               ),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(8)),
               const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(16)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,9 +127,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   const AnimatedSwitch(),
                 ],
               ),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(8)),
               const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(16)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,9 +147,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   const AnimatedSwitch(),
                 ],
               ),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(8)),
               const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(16)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,9 +167,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   const AnimatedSwitch(),
                 ],
               ),
-              SizedBox(height: Get.height * 0.01),
+              SizedBox(height: Adaptive.px(8)),
               const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.025),
+              SizedBox(height: Adaptive.px(24)),
               Text(
                 'App Theme',
                 style: GoogleFonts.lato(
@@ -175,10 +177,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     fontWeight: FontWeight.w600,
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? Colors.black
+                            ? const Color(0xff1F1C1C)
                             : Colors.white),
               ),
-              SizedBox(height: Get.height * 0.025),
+              SizedBox(height: Adaptive.px(17)),
               RadioListTile<bool>(
                 title: Text(
                   'Light',
@@ -192,6 +194,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   _toggleTheme(true);
                 },
               ),
+              // SizedBox(height: Adaptive.px(11)),
               RadioListTile<bool>(
                 title: Text(
                   'Dark',
@@ -231,7 +234,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           fontWeight: FontWeight.w600),
                     )),
               ),
-              SizedBox(height: Get.height * 0.04),
+              SizedBox(height: Adaptive.px(16)),
             ],
           ),
         ),

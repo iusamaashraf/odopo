@@ -6,6 +6,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/models/remainder_model.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RemainderPage extends StatelessWidget {
   const RemainderPage({super.key});
@@ -37,7 +38,7 @@ class RemainderPage extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
+                  ? ColorClass.textColor
                   : Colors.white),
         ),
       ),
@@ -52,7 +53,8 @@ class RemainderPage extends StatelessWidget {
                 itemCount: remainderList.length,
                 itemBuilder: ((context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Adaptive.px(16), vertical: Adaptive.px(16)),
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -81,7 +83,7 @@ class RemainderPage extends StatelessWidget {
                                     color:
                                         AdaptiveTheme.of(context).brightness ==
                                                 Brightness.light
-                                            ? Colors.black
+                                            ? ColorClass.textColor
                                             : Colors.white),
                               ),
                               PopupMenuButton<String>(
@@ -131,9 +133,9 @@ class RemainderPage extends StatelessWidget {
                             style: GoogleFonts.lato(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                                color: Colors.grey),
+                                color: ColorClass.textColor),
                           ),
-                          SizedBox(height: Get.height * 0.015),
+                          SizedBox(height: Adaptive.px(12)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,13 +145,25 @@ class RemainderPage extends StatelessWidget {
                               Text(
                                 remainderList[index].time,
                                 style: GoogleFonts.lato(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? ColorClass.textColor
+                                            : Colors.white),
                               ),
                               const Spacer(),
                               Text(
                                 remainderList[index].day,
                                 style: GoogleFonts.lato(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? ColorClass.textColor
+                                            : Colors.white),
                               ),
                             ],
                           ),

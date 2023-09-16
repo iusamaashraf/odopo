@@ -12,18 +12,25 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: Adaptive.px(25),
+          ),
           Text(
             'Select Place to shop from ',
             style: GoogleFonts.lato(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? const Color(0xff181F20)
+                    : Colors.white),
           ),
-          SizedBox(height: Get.height * 0.02),
+          SizedBox(
+            height: Adaptive.px(24),
+          ),
           Row(
             children: [
               GestureDetector(
@@ -31,11 +38,11 @@ class ShopPage extends StatelessWidget {
                   () => const ShoppingPage(storeName: 'Amazon'),
                 ),
                 child: Container(
-                  width: Adaptive.px(151),
+                  width: Adaptive.px(137),
                   height: 166,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(
                         color: AdaptiveTheme.of(context).brightness ==
                                 Brightness.light

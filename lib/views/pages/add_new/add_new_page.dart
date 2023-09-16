@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddNewPage extends StatelessWidget {
   AddNewPage({super.key});
@@ -51,6 +52,7 @@ class AddNewPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: Adaptive.px(33)),
                 CommonField(
                   controller: productNameController,
                   title: 'Name of the product',
@@ -72,12 +74,14 @@ class AddNewPage extends StatelessWidget {
                 Text(
                   'Add any note',
                   style: GoogleFonts.lato(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: AdaptiveTheme.of(context).brightness ==
                               Brightness.light
                           ? const Color(0xff5d5d5d)
                           : const Color(0xffaeaeae)),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: Get.height * 0.004),
                 Container(
                   height: Get.height * 0.2,
                   width: Get.width,
@@ -105,7 +109,7 @@ class AddNewPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: Get.height * 0.04),
+                SizedBox(height: Adaptive.px(24)),
                 CommonButton(
                     onTap: () {},
                     child: Text(

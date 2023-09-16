@@ -59,11 +59,14 @@ class _RootPageState extends State<RootPage> {
             color: AdaptiveTheme.of(context).brightness == Brightness.light
                 ? Colors.white
                 : ColorClass.darkScaffoldColor,
-            icon: SvgPicture.asset(
-              IconClass.drawer,
-              color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
-                  : Colors.white,
+            icon: Padding(
+              padding: EdgeInsets.only(left: Adaptive.px(0)),
+              child: SvgPicture.asset(
+                IconClass.drawer,
+                color: AdaptiveTheme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : Colors.white,
+              ),
             ),
             onSelected: (value) {
               if (value == "item1") {
@@ -185,7 +188,7 @@ class _RootPageState extends State<RootPage> {
         elevation: 0,
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right: 16),
             child: GestureDetector(
               onTap: () => Get.to(() => const ProfilePage()),
               child: CircleAvatar(
@@ -297,7 +300,7 @@ class _RootPageState extends State<RootPage> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            // SizedBox(height: Adaptive.px(25)),
             Text('Subscription',
                 style: GoogleFonts.lato(
                     fontSize: 18,
@@ -306,7 +309,7 @@ class _RootPageState extends State<RootPage> {
                         AdaptiveTheme.of(context).brightness == Brightness.light
                             ? Colors.black
                             : Colors.white)),
-            const SizedBox(height: 20),
+            SizedBox(height: Adaptive.px(34)),
             Container(
               width: Get.width,
               height: Adaptive.px(76),
@@ -319,14 +322,20 @@ class _RootPageState extends State<RootPage> {
                           text: '\$100',
                           style: GoogleFonts.lato(
                             fontSize: 32,
-                            color: Colors.black,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? const Color(0xff004E52)
+                                : const Color(0xff1b1d1d),
                             fontWeight: FontWeight.w500,
                           )),
                       TextSpan(
                           text: '/month',
                           style: GoogleFonts.lato(
                             fontSize: 14,
-                            color: Colors.black,
+                            color: AdaptiveTheme.of(context).brightness ==
+                                    Brightness.light
+                                ? const Color(0xff004E52)
+                                : const Color(0xff1b1d1d),
                             fontWeight: FontWeight.w500,
                           )),
                     ],
@@ -334,19 +343,19 @@ class _RootPageState extends State<RootPage> {
                 ),
               ),
             ),
-            SizedBox(height: Get.height * 0.02),
+            SizedBox(height: Adaptive.px(32)),
             Text(
-              "To remove add you need to subscribe. After the subscription you can continue your app without any hassle. ",
+              "To remove add you need to subscribe.After the subscription you can continue your app without any hassle. ",
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
-                          ? Colors.black
+                          ? const Color(0xff5d5d5d)
                           : const Color(0xffaeaeae)),
             ),
-            SizedBox(height: Get.height * 0.02),
+            SizedBox(height: Adaptive.px(24)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CommonButton(

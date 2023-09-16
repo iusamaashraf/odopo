@@ -8,6 +8,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/constants/icons.dart';
 import 'package:odopa/models/tracking_stepper.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'components/order_tracking_header.dart';
 
@@ -54,7 +55,7 @@ class _TrackingPageState extends State<TrackingPage> {
         height: Get.height,
         width: Get.width,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -65,10 +66,10 @@ class _TrackingPageState extends State<TrackingPage> {
                     fontWeight: FontWeight.w500,
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? Colors.black
+                            ? ColorClass.textColor
                             : Colors.white),
               ),
-              SizedBox(height: Get.height * 0.04),
+              SizedBox(height: Adaptive.px(16)),
               const OrderTrackingHeader(),
               AnotherStepper(
                 activeBarColor: ColorClass.primaryColor,
@@ -82,7 +83,7 @@ class _TrackingPageState extends State<TrackingPage> {
                             fontWeight: FontWeight.w600,
                             color: AdaptiveTheme.of(context).brightness ==
                                     Brightness.light
-                                ? Colors.black
+                                ? ColorClass.textColor
                                 : Colors.white),
                       ),
                       subtitle: StepperText(
@@ -112,7 +113,7 @@ class _TrackingPageState extends State<TrackingPage> {
                             fontWeight: FontWeight.w600,
                             color: AdaptiveTheme.of(context).brightness ==
                                     Brightness.light
-                                ? Colors.black
+                                ? ColorClass.textColor
                                 : Colors.white),
                       ),
                       subtitle: StepperText(
@@ -142,7 +143,7 @@ class _TrackingPageState extends State<TrackingPage> {
                             fontWeight: FontWeight.w600,
                             color: AdaptiveTheme.of(context).brightness ==
                                     Brightness.light
-                                ? Colors.black
+                                ? ColorClass.textColor
                                 : Colors.white),
                       ),
                       subtitle: StepperText(

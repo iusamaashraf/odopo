@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CommonField extends StatelessWidget {
   CommonField({
@@ -32,7 +33,7 @@ class CommonField extends StatelessWidget {
               .subtitle1!
               .copyWith(color: ColorClass.secondayColor),
         ),
-        SizedBox(height: Get.height * 0.01),
+        SizedBox(height: Get.height * 0.004),
         TextFormField(
           keyboardType: keyBoardType,
           onChanged: onChanged,
@@ -65,7 +66,7 @@ class CommonField extends StatelessWidget {
                   width: 1),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -74,7 +75,7 @@ class CommonField extends StatelessWidget {
                   width: 1),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -83,7 +84,7 @@ class CommonField extends StatelessWidget {
                   width: 1),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -92,7 +93,7 @@ class CommonField extends StatelessWidget {
                   width: 1),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -101,7 +102,7 @@ class CommonField extends StatelessWidget {
                   width: 1),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -111,7 +112,7 @@ class CommonField extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: Get.height * 0.03),
+        SizedBox(height: Adaptive.px(16)),
       ],
     );
   }

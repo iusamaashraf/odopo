@@ -28,14 +28,14 @@ class GetStartedPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(IconClass.getsrated),
-                  SizedBox(height: Get.height * 0.1),
+                  SizedBox(height: Adaptive.px(91.5)),
                   Text(
                     'Welcome to',
                     style: GoogleFonts.lato(
                         fontSize: 14,
                         color: AdaptiveTheme.of(context).brightness ==
                                 Brightness.light
-                            ? ColorClass.secondayColor
+                            ? const Color(0xff5E5E5E)
                             : const Color(0xffAEAEAE),
                         fontWeight: FontWeight.w400),
                   ),
@@ -45,11 +45,11 @@ class GetStartedPage extends StatelessWidget {
                         fontSize: 28,
                         color: AdaptiveTheme.of(context).brightness ==
                                 Brightness.light
-                            ? ColorClass.primaryColor
+                            ? ColorClass.textColor
                             : const Color(0xff03F4C2),
                         fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(height: Get.height * 0.03),
+                  SizedBox(height: Adaptive.px(34)),
                   SizedBox(
                     width: Get.width * 0.85,
                     child: Text(
@@ -59,44 +59,45 @@ class GetStartedPage extends StatelessWidget {
                           fontSize: 16,
                           color: AdaptiveTheme.of(context).brightness ==
                                   Brightness.light
-                              ? Colors.black
+                              ? const Color(0xff5E5E5E)
                               : const Color(0xffAEAEAE),
                           fontWeight: FontWeight.w400),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: Get.height * 0.03,
-              child: GestureDetector(
-                onTap: () => Get.offAll(() => const LoginPage()),
-                child: Container(
-                  height: 44,
-                  width: Adaptive.px(343),
-                  decoration: BoxDecoration(
-                    color: ColorClass.primaryColor,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Get Started',
-                        style: GoogleFonts.lato(
-                            fontSize: 16,
+                  SizedBox(height: Adaptive.px(40)),
+                  GestureDetector(
+                    onTap: () => Get.offAll(() => const LoginPage()),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Adaptive.px(44),
+                          vertical: Adaptive.px(16)),
+                      width: Adaptive.px(343),
+                      decoration: BoxDecoration(
+                        color: ColorClass.primaryColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Get Started',
+                            style: GoogleFonts.lato(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(width: 10),
+                          const Icon(
+                            Icons.arrow_forward_ios,
                             color: Colors.white,
-                            fontWeight: FontWeight.w400),
+                            size: 18,
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  SizedBox(height: Adaptive.px(28)),
+                ],
               ),
             ),
           ],

@@ -10,6 +10,7 @@ import 'package:odopa/views/widgets/common_button.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({super.key});
@@ -72,18 +73,18 @@ class _OtpPageState extends State<OtpPage> {
         height: Get.height,
         width: Get.width,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+          padding: EdgeInsets.symmetric(horizontal: Adaptive.px(21)),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: Adaptive.px(110)),
               Text(
-                'Welcome',
+                'Welcome to',
                 style: GoogleFonts.lato(
                     fontSize: 14,
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? ColorClass.secondayColor
-                            : const Color(0xffaeaeae),
+                            ? const Color(0xff5E5E5E)
+                            : const Color(0xffAEAEAE),
                     fontWeight: FontWeight.w400),
               ),
               Text(
@@ -92,11 +93,11 @@ class _OtpPageState extends State<OtpPage> {
                     fontSize: 28,
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? ColorClass.primaryColor
-                            : const Color(0xff03f4c2),
+                            ? ColorClass.textColor
+                            : const Color(0xff03F4C2),
                     fontWeight: FontWeight.w700),
               ),
-              SizedBox(height: Get.height * 0.03),
+              SizedBox(height: Adaptive.px(124)),
               SizedBox(
                 width: Get.width * 0.85,
                 child: Text(
@@ -111,14 +112,22 @@ class _OtpPageState extends State<OtpPage> {
                       fontWeight: FontWeight.w400),
                 ),
               ),
-              SizedBox(height: Get.height * 0.05),
+              SizedBox(height: Adaptive.px(24)),
               OTPTextField(
                 controller: otpController,
                 length: 4,
                 otpFieldStyle: OtpFieldStyle(
-                  backgroundColor:
+                  focusBorderColor:
                       AdaptiveTheme.of(context).brightness == Brightness.light
                           ? const Color(0xffd6d6d6)
+                          : const Color(0xff242424),
+                  enabledBorderColor:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? const Color(0xffd6d6d6)
+                          : const Color(0xff242424),
+                  backgroundColor:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.white
                           : const Color(0xff242424),
                   borderColor:
                       AdaptiveTheme.of(context).brightness == Brightness.light
@@ -127,12 +136,13 @@ class _OtpPageState extends State<OtpPage> {
                 ),
                 width: MediaQuery.of(context).size.width,
                 fieldWidth: Get.width * 0.12,
-                style: const TextStyle(fontSize: (17)),
+                style: GoogleFonts.lato(
+                    fontSize: Adaptive.px(14), fontWeight: FontWeight.w400),
                 textFieldAlignment: MainAxisAlignment.spaceEvenly,
                 fieldStyle: FieldStyle.box,
                 onCompleted: (pin) {},
               ),
-              SizedBox(height: Get.height * 0.04),
+              SizedBox(height: Adaptive.px(15.5)),
               _start == 0
                   ? Align(
                       alignment: Alignment.center,
@@ -141,13 +151,13 @@ class _OtpPageState extends State<OtpPage> {
                           resetTimer();
                         },
                         child: Text(
-                          'Resend code in',
+                          'Resend code',
                           style: GoogleFonts.roboto(
                               color: AdaptiveTheme.of(context).brightness ==
                                       Brightness.light
-                                  ? Colors.black
+                                  ? const Color(0xff989898)
                                   : const Color(0xffaeaeae),
-                              fontSize: 18),
+                              fontSize: 12),
                         ),
                       ),
                     )
@@ -161,9 +171,9 @@ class _OtpPageState extends State<OtpPage> {
                               style: GoogleFonts.lato(
                                   color: AdaptiveTheme.of(context).brightness ==
                                           Brightness.light
-                                      ? ColorClass.primaryColor
+                                      ? const Color(0xff989898)
                                       : const Color(0xff004e52),
-                                  fontSize: 18),
+                                  fontSize: 12),
                             ),
                             TextSpan(
                                 text: _start.toString(),
@@ -173,13 +183,13 @@ class _OtpPageState extends State<OtpPage> {
                                                 Brightness.light
                                             ? Colors.black
                                             : const Color(0xff989898),
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500))
                           ],
                         ),
                       ),
                     ),
-              SizedBox(height: Get.height * 0.02),
+              SizedBox(height: Adaptive.px(24)),
               CommonButton(
                 onTap: () => Get.offAll(() => const RootPage()),
                 child: Text(

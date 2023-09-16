@@ -7,6 +7,8 @@ import 'package:odopa/constants/icons.dart';
 import 'package:odopa/models/wish_list_header_model.dart';
 import 'package:odopa/views/pages/add_new/add_new_page.dart';
 import 'package:odopa/views/pages/event/create_other_event_page.dart';
+import 'package:odopa/views/pages/partner_wishlist/partner_wishlist_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'components/partner_wishlist.dart';
 
 class WishListPage extends StatefulWidget {
@@ -24,12 +26,13 @@ class _WishListPageState extends State<WishListPage> {
       height: Get.height,
       width: Get.width,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
         child: Column(
           children: [
             PartnerWishlist(
-              onTap: () => Get.to(() => const CreateOtherEventPage()),
+              onTap: () => Get.to(() => PartnerWishlistPage()),
             ),
+            SizedBox(height: Adaptive.px(16)),
             Row(
               children: List.generate(
                 headerList.length,
@@ -50,7 +53,7 @@ class _WishListPageState extends State<WishListPage> {
                               fontSize: 16,
                               color: AdaptiveTheme.of(context).brightness ==
                                       Brightness.light
-                                  ? Colors.black
+                                  ? const Color(0xff004E52)
                                   : const Color(0xffaeaeae),
                               fontWeight: FontWeight.w500),
                         ),
@@ -61,7 +64,7 @@ class _WishListPageState extends State<WishListPage> {
                                 height: 2,
                                 color: AdaptiveTheme.of(context).brightness ==
                                         Brightness.light
-                                    ? ColorClass.primaryColor
+                                    ? const Color(0xff004E52)
                                     : const Color(0xffaeaeae),
                               )
                             : const SizedBox(),
@@ -72,115 +75,165 @@ class _WishListPageState extends State<WishListPage> {
               ),
             ),
             const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Recently added',
-                  style: GoogleFonts.lato(
-                      fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                GestureDetector(
-                  onTap: () => Get.to(() => AddNewPage()),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: AdaptiveTheme.of(context).brightness ==
-                                  Brightness.light
-                              ? ColorClass.primaryColor
-                              : const Color(0xff03f4c2)),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Add New',
+            selectedIndex < 3
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Recently added',
                         style: GoogleFonts.lato(
-                            fontSize: 15,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: AdaptiveTheme.of(context).brightness ==
                                     Brightness.light
-                                ? ColorClass.primaryColor
-                                : const Color(0xff03f4c2)),
+                                ? ColorClass.textColor
+                                : Colors.white),
                       ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 20),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Container(
+                      GestureDetector(
+                        onTap: () => Get.to(() => AddNewPage()),
+                        // onTap: () => Get.to(() => const CreateOtherEventPage()),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                              color: const Color(0xffFCFFFF),
-                              border: Border.all(
-                                color: const Color(0xffE5E5E5),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color(0xffFCFFFF), blurRadius: 8),
-                              ]),
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset(
-                                  'assets/images/watch.png',
-                                  fit: BoxFit.cover,
-                                  width: Get.width,
-                                ),
-                                SizedBox(height: Get.height * 0.01),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Wrist watch',
-                                      style: GoogleFonts.lato(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      '20 July, 2022',
-                                      style: GoogleFonts.lato(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: Get.height * 0.015),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'www.abcdshopping.com',
-                                      style: GoogleFonts.lato(
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    Image.asset(IconClass.document)
-                                  ],
-                                ),
-                                SizedBox(height: Get.height * 0.015),
-                              ],
+                            border: Border.all(
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? ColorClass.primaryColor
+                                    : const Color(0xff03f4c2)),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Add New',
+                              style: GoogleFonts.lato(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: AdaptiveTheme.of(context).brightness ==
+                                          Brightness.light
+                                      ? ColorClass.primaryColor
+                                      : const Color(0xff03f4c2)),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
+            SizedBox(height: Adaptive.px(32)),
+            Expanded(
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                padding: selectedIndex == 3
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.only(bottom: 20),
+                itemCount: selectedIndex == 3 ? 1 : 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: Adaptive.px(8)),
+                    child: selectedIndex < 3
+                        ? Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color:
+                                        AdaptiveTheme.of(context).brightness ==
+                                                Brightness.light
+                                            ? const Color(0xffFCFFFF)
+                                            : const Color(0xff242424),
+                                    border: Border.all(
+                                      color: AdaptiveTheme.of(context)
+                                                  .brightness ==
+                                              Brightness.light
+                                          ? const Color(0xffE5E5E5)
+                                          : const Color(0xff242424),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: AdaptiveTheme.of(context)
+                                                      .brightness ==
+                                                  Brightness.light
+                                              ? const Color(0xffFCFFFF)
+                                              : const Color(0xff242424),
+                                          blurRadius: 8),
+                                    ]),
+                                child: Container(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/watch.png',
+                                        fit: BoxFit.cover,
+                                        width: Get.width,
+                                      ),
+                                      SizedBox(height: Get.height * 0.01),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Wrist watch',
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: AdaptiveTheme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? const Color(0xff1F1C1C)
+                                                    : Colors.white),
+                                          ),
+                                          Text(
+                                            '20 July, 2022',
+                                            style: GoogleFonts.lato(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: AdaptiveTheme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? const Color(0xff8B8B8B)
+                                                    : Colors.white
+                                                        .withOpacity(.4)),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: Get.height * 0.015),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'www.abcdshopping.com',
+                                            style: GoogleFonts.lato(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            IconClass.document,
+                                            color: AdaptiveTheme.of(context)
+                                                        .brightness ==
+                                                    Brightness.light
+                                                ? const Color(0xff181F20)
+                                                : Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: Get.height * 0.015),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : SizedBox(
+                            height: Get.height,
+                            width: Get.width,
+                            child: const CreateOtherEventPage()),
                   );
                 },
               ),

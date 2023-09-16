@@ -16,6 +16,7 @@ import 'package:odopa/views/pages/profile/send_invitation/send_invitvitation_pag
 import 'package:odopa/views/widgets/common_button.dart';
 import 'package:odopa/views/widgets/common_field.dart';
 import 'package:odopa/views/widgets/my_calendar.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -74,10 +75,10 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(
           'Create Profile',
           style: GoogleFonts.lato(
-              fontSize: 20,
+              fontSize: Adaptive.px(20),
               fontWeight: FontWeight.w500,
               color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
+                  ? ColorClass.textColor
                   : Colors.white),
         ),
         centerTitle: true,
@@ -98,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
         height: Get.height,
         width: Get.width,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+          padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,8 +138,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               border: Border.all(
                                 color: AdaptiveTheme.of(context).brightness ==
                                         Brightness.light
-                                    ? Colors.grey
-                                    : Colors.grey.shade600,
+                                    ? const Color(0xffE5E5E5)
+                                    : const Color(0xff242424),
                               )),
                           child: Center(
                             child: SvgPicture.asset(
@@ -150,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                         )),
-                SizedBox(height: Get.height * 0.06),
+                SizedBox(height: Adaptive.px(24)),
                 CommonField(
                   controller: nameController,
                   title: 'Full name',
@@ -160,6 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     return '';
                   },
                 ),
+
                 CommonField(
                   controller: emailController,
                   title: 'Email',
@@ -195,9 +197,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             : Colors.white),
                   ],
                 ),
-                SizedBox(height: Get.height * 0.01),
+                SizedBox(height: Get.height * 0.004),
                 Container(
-                  height: Get.height * 0.06,
+                  height: Get.height * 0.065,
                   width: Get.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
@@ -210,7 +212,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Brightness.light
                               ? Colors.grey
                               : const Color(0xff242424),
-                          width: 1.5)),
+                          width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DropdownButtonHideUnderline(
@@ -253,7 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: Get.height * 0.02),
+                SizedBox(height: Adaptive.px(16)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -264,9 +266,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           .subtitle1!
                           .copyWith(color: ColorClass.secondayColor),
                     ),
-                    SizedBox(height: Get.height * 0.01),
+                    SizedBox(height: Get.height * 0.004),
                     Container(
-                      height: Get.height * 0.06,
+                      height: Get.height * 0.065,
                       width: Get.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
@@ -279,7 +281,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Brightness.light
                                 ? Colors.grey
                                 : const Color(0xff242424),
-                            width: 1.5),
+                            width: 1),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -316,7 +318,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
 
-                SizedBox(height: Get.height * 0.05),
+                SizedBox(height: Adaptive.px(50)),
                 CommonButton(
                   onTap: () {
                     Navigator.push(

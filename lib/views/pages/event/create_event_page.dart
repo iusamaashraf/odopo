@@ -33,19 +33,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
 
   final TextEditingController notesController = TextEditingController();
   final TextEditingController hourController = TextEditingController();
-  void _selectDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
 
   String selectedOption = '';
 
@@ -75,225 +62,227 @@ class _CreateEventPageState extends State<CreateEventPage> {
   Widget build(BuildContext context) {
     final DateFormat formatter = DateFormat('MMMM dd, yyyy');
     final String formatted = formatter.format(selectedDate);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Add your Special days',
-            style: GoogleFonts.lato(
-                color: AdaptiveTheme.of(context).brightness == Brightness.light
-                    ? Colors.black
-                    : Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
-          ),
-        ),
-        Row(
-          children: List.generate(
-            headerList.length,
-            (index) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      headerList[index].title,
-                      style: GoogleFonts.lato(
-                          fontSize: 16,
-                          color: AdaptiveTheme.of(context).brightness ==
-                                  Brightness.light
-                              ? Colors.black
-                              : const Color(0xffaeaeae),
-                          fontWeight: FontWeight.w500),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Adaptive.px(16)),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add your Special days',
+              style: GoogleFonts.lato(
+                  color:
+                      AdaptiveTheme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
+            Row(
+              children: List.generate(
+                headerList.length,
+                (index) => Padding(
+                  padding: EdgeInsets.only(
+                      right: Adaptive.px(24), top: Adaptive.px(24)),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          headerList[index].title,
+                          style: GoogleFonts.lato(
+                              fontSize: 16,
+                              color: AdaptiveTheme.of(context).brightness ==
+                                      Brightness.light
+                                  ? const Color(0xff004E52)
+                                  : const Color(0xffaeaeae),
+                              fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 6),
+                        index == selectedIndex
+                            ? Container(
+                                width: 27,
+                                height: 2,
+                                color: AdaptiveTheme.of(context).brightness ==
+                                        Brightness.light
+                                    ? const Color(0xff004E52)
+                                    : const Color(0xffaeaeae),
+                              )
+                            : const SizedBox(),
+                      ],
                     ),
-                    const SizedBox(height: 6),
-                    index == selectedIndex
-                        ? Container(
-                            width: 27,
-                            height: 2,
-                            color: AdaptiveTheme.of(context).brightness ==
-                                    Brightness.light
-                                ? ColorClass.primaryColor
-                                : const Color(0xffaeaeae),
-                          )
-                        : const SizedBox(),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              EventField(
-                isReadOnly: true,
-                suffix: const SizedBox(),
-                controller: typeController,
-                onChanged: (value) {},
-                validator: (value) {
-                  return '';
-                },
-                hintText: selectedIndex == 0
-                    ? 'Birthday'
-                    : selectedIndex == 1
-                        ? 'Anniversary'
-                        : selectedIndex == 2
-                            ? 'First Meet'
-                            : 'Other',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              Container(
-                height: Get.height * 0.06,
-                width: Get.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color:
-                      AdaptiveTheme.of(context).brightness == Brightness.light
-                          ? Colors.white
-                          : ColorClass.darkScaffoldColor,
-                  border: Border.all(
-                      color: AdaptiveTheme.of(context).brightness ==
-                              Brightness.light
-                          ? Colors.grey
-                          : const Color(0xff242424),
-                      width: 1.5),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // ignore: unnecessary_null_comparison
-                      if (selectedDate != null)
-                        Expanded(
-                          child: Text(
-                            formatted,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: AdaptiveTheme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.black
-                                    : Colors.white),
-                          ),
-                        ),
-                      GestureDetector(
-                          onTap: () {
-                            MyCalendarClass().customCalendar(context);
-                          },
-                          child: Image.asset(IconClass.calendar))
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
-              EventField(
-                isSuffix: true,
-                suffix: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return reminderPopUp(context);
-                      },
-                    );
+            SizedBox(height: Adaptive.px(16)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                EventField(
+                  isReadOnly: true,
+                  suffix: const SizedBox(),
+                  controller: typeController,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    return '';
                   },
-                  child: Image.asset(IconClass.clock),
+                  hintText: selectedIndex == 0
+                      ? 'Birthday'
+                      : selectedIndex == 1
+                          ? 'Anniversary'
+                          : selectedIndex == 2
+                              ? 'First Meet'
+                              : 'Other',
                 ),
-                isReadOnly: true,
-                controller: setReminderController,
-                onChanged: (value) {},
-                validator: (value) {
-                  return '';
-                },
-                hintText: 'Set reminder',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              EventField(
-                suffix: const SizedBox(),
-                controller: setBudgetController,
-                onChanged: (value) {},
-                validator: (value) {
-                  return '';
-                },
-                hintText: 'Set budget',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              EventField(
-                suffix: const SizedBox(),
-                controller: chooseGiftController,
-                onChanged: (value) {},
-                validator: (value) {
-                  return '';
-                },
-                hintText: 'Choose gifts',
-              ),
-              SizedBox(height: Get.height * 0.02),
-              TextFormField(
-                controller: notesController,
-                maxLines: 5,
-                decoration: InputDecoration(
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  hintText: 'Add notes',
-                  hintStyle: GoogleFonts.lato(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AdaptiveTheme.of(context).brightness ==
-                              Brightness.light
-                          ? Colors.black
-                          : Colors.white),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
+                SizedBox(height: Adaptive.px(16)),
+                Container(
+                  height: Get.height * 0.06,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : ColorClass.darkScaffoldColor,
+                    border: Border.all(
                         color: AdaptiveTheme.of(context).brightness ==
                                 Brightness.light
-                            ? ColorClass.secondayColor
+                            ? Colors.grey
                             : const Color(0xff242424),
                         width: 1),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: AdaptiveTheme.of(context).brightness ==
-                                Brightness.light
-                            ? ColorClass.secondayColor
-                            : const Color(0xff242424),
-                        width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: AdaptiveTheme.of(context).brightness ==
-                                Brightness.light
-                            ? ColorClass.secondayColor
-                            : const Color(0xff242424),
-                        width: 1),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // ignore: unnecessary_null_comparison
+                        if (selectedDate != null)
+                          Expanded(
+                            child: Text(
+                              formatted,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: AdaptiveTheme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white),
+                            ),
+                          ),
+                        GestureDetector(
+                            onTap: () {
+                              MyCalendarClass().customCalendar(context);
+                            },
+                            child: Image.asset(IconClass.calendar))
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: Get.height * 0.03),
-              CommonButton(
-                  onTap: () {},
-                  child: Text(
-                    'Save',
-                    style: GoogleFonts.lato(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ))
-            ],
-          ),
+                SizedBox(height: Adaptive.px(16)),
+                EventField(
+                  isSuffix: true,
+                  suffix: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return reminderPopUp(context);
+                        },
+                      );
+                    },
+                    child: Image.asset(IconClass.clock),
+                  ),
+                  isReadOnly: true,
+                  controller: setReminderController,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    return '';
+                  },
+                  hintText: 'Set reminder',
+                ),
+                SizedBox(height: Adaptive.px(16)),
+                EventField(
+                  suffix: const SizedBox(),
+                  controller: setBudgetController,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    return '';
+                  },
+                  hintText: 'Set budget',
+                ),
+                SizedBox(height: Adaptive.px(16)),
+                EventField(
+                  suffix: const SizedBox(),
+                  controller: chooseGiftController,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    return '';
+                  },
+                  hintText: 'Choose gifts',
+                ),
+                SizedBox(height: Adaptive.px(16)),
+                TextFormField(
+                  controller: notesController,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    hintText: 'Add notes',
+                    hintStyle: GoogleFonts.lato(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AdaptiveTheme.of(context).brightness ==
+                                Brightness.light
+                            ? Colors.black
+                            : Colors.white),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? ColorClass.secondayColor
+                              : const Color(0xff242424),
+                          width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? ColorClass.secondayColor
+                              : const Color(0xff242424),
+                          width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AdaptiveTheme.of(context).brightness ==
+                                  Brightness.light
+                              ? ColorClass.secondayColor
+                              : const Color(0xff242424),
+                          width: 1),
+                    ),
+                  ),
+                ),
+                SizedBox(height: Adaptive.px(16)),
+                CommonButton(
+                    onTap: () {},
+                    child: Text(
+                      'Save',
+                      style: GoogleFonts.lato(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ))
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

@@ -25,7 +25,7 @@ class PartnerWishlist extends StatelessWidget {
                 color: AdaptiveTheme.of(context).brightness == Brightness.light
                     ? Colors.grey.shade300
                     : const Color(0xff242424)),
-            borderRadius: BorderRadius.circular(12)),
+            borderRadius: BorderRadius.circular(8)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -36,7 +36,7 @@ class PartnerWishlist extends StatelessWidget {
                 style: GoogleFonts.lato(
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? Colors.black
+                            ? const Color(0xff005456)
                             : Colors.white,
                     fontWeight: FontWeight.w600),
               ),

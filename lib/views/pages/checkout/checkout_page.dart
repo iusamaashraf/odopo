@@ -46,7 +46,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             icon: Icon(
               Icons.arrow_back,
               color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
+                  ? ColorClass.textColor
                   : Colors.white,
             )),
         centerTitle: true,
@@ -56,7 +56,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: AdaptiveTheme.of(context).brightness == Brightness.light
-                  ? Colors.black
+                  ? ColorClass.textColor
                   : Colors.white),
         ),
       ),
@@ -67,8 +67,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: Adaptive.px(24)),
               const Divider(color: Colors.grey),
-              SizedBox(height: Get.height * 0.02),
+              SizedBox(height: Adaptive.px(22)),
               Center(
                 child: Column(
                   children: [
@@ -92,7 +93,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 fontSize: 32,
                                 color: AdaptiveTheme.of(context).brightness ==
                                         Brightness.light
-                                    ? Colors.black
+                                    ? ColorClass.textColor
                                     : Colors.white,
                                 fontWeight: FontWeight.w500,
                               )),
@@ -102,7 +103,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 fontSize: 14,
                                 color: AdaptiveTheme.of(context).brightness ==
                                         Brightness.light
-                                    ? Colors.black
+                                    ? ColorClass.textColor
                                     : Colors.white,
                                 fontWeight: FontWeight.w500,
                               )),
@@ -112,10 +113,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ],
                 ),
               ),
-              SizedBox(height: Get.height * 0.02),
+              SizedBox(height: Adaptive.px(24)),
               const Divider(color: Colors.grey),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    EdgeInsets.only(left: 16, top: Adaptive.px(24), right: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -126,12 +128,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           fontWeight: FontWeight.w500,
                           color: AdaptiveTheme.of(context).brightness ==
                                   Brightness.light
-                              ? Colors.black
+                              ? ColorClass.textColor
                               : Colors.white),
                     ),
-                    SizedBox(height: Get.height * 0.02),
+                    SizedBox(height: Adaptive.px(16)),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         selectCard(IconClass.visa, 0),
                         selectCard(IconClass.mastercard, 1),
@@ -139,7 +141,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         selectCard(IconClass.webmoney, 3),
                       ],
                     ),
-                    SizedBox(height: Get.height * 0.02),
+                    SizedBox(height: Adaptive.px(21)),
                     CommonField(
                       controller: cardHolderNameController,
                       title: 'Card holder name',
@@ -214,7 +216,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       ),
                                     )
                                   : const SizedBox()),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 8),
                           Text(
                             'Set as default payment card',
                             style: GoogleFonts.lato(

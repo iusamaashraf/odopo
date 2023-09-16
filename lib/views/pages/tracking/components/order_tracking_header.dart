@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odopa/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OrderTrackingHeader extends StatelessWidget {
@@ -14,19 +15,20 @@ class OrderTrackingHeader extends StatelessWidget {
     return Row(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(4),
           child: Image.asset(
             'assets/images/watch.png',
             height: Adaptive.px(101),
             width: Adaptive.px(116),
+            fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(width: 5),
+        SizedBox(width: Adaptive.px(8)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: Get.width * 0.65,
+              width: Adaptive.px(220),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -37,7 +39,7 @@ class OrderTrackingHeader extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         color: AdaptiveTheme.of(context).brightness ==
                                 Brightness.light
-                            ? Colors.black
+                            ? ColorClass.textColor
                             : Colors.white),
                   ),
                   Text(
@@ -74,7 +76,7 @@ class OrderTrackingHeader extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
-                          ? Colors.black
+                          ? ColorClass.textColor
                           : Colors.white),
             ),
           ],

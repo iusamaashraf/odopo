@@ -6,6 +6,7 @@ import 'package:odopa/constants/colors.dart';
 import 'package:odopa/views/pages/otp/otp_page.dart';
 import 'package:odopa/views/pages/root/root_page.dart';
 import 'package:odopa/views/widgets/common_button.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'components/invite_header.dart';
 
@@ -35,20 +36,20 @@ class SendInvitationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const InviteHeader(),
-            const SizedBox(height: 10),
+            const SizedBox(height: 0),
             Align(
               child: Text(
-                'Julia',
+                'Leslie Alexander',
                 style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color:
                         AdaptiveTheme.of(context).brightness == Brightness.light
-                            ? Colors.black
+                            ? const Color(0xff1F1C1C)
                             : Colors.white,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
             ),
-            const SizedBox(height: 10),
-            SizedBox(height: Get.height * 0.02),
+            SizedBox(height: Adaptive.px(24)),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
               child: Container(
@@ -61,8 +62,8 @@ class SendInvitationPage extends StatelessWidget {
                   border: Border.all(
                       color: AdaptiveTheme.of(context).brightness ==
                               Brightness.light
-                          ? Colors.grey.shade300
-                          : const Color(0xff1b1d1d)),
+                          ? const Color(0xffe5e5e5)
+                          : const Color(0xff242424)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
@@ -141,7 +142,7 @@ class InvitationRowData extends StatelessWidget {
               style: GoogleFonts.lato(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
-                          ? Colors.black
+                          ? const Color(0xff181F20)
                           : Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500),
@@ -151,7 +152,7 @@ class InvitationRowData extends StatelessWidget {
               style: GoogleFonts.lato(
                   color:
                       AdaptiveTheme.of(context).brightness == Brightness.light
-                          ? Colors.black
+                          ? const Color(0xff181F20)
                           : Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500),
@@ -160,7 +161,7 @@ class InvitationRowData extends StatelessWidget {
         ),
         Divider(
             color: AdaptiveTheme.of(context).brightness == Brightness.light
-                ? Colors.grey
+                ? const Color(0xffe5e5e5)
                 : Colors.grey.shade700),
         const SizedBox(height: 10),
       ],

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odopa/constants/colors.dart';
-import 'package:odopa/constants/icons.dart';
 import 'package:odopa/views/pages/profile/profile_page.dart';
-import 'package:odopa/views/widgets/auth_button.dart';
 import 'package:odopa/views/widgets/common_button.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,32 +15,33 @@ class HomePage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: Adaptive.px(43)),
           Text(
-            'Odopo',
+            'Odopa',
             style: Theme.of(context).textTheme.subtitle1!.copyWith(
                 color: AdaptiveTheme.of(context).brightness == Brightness.light
-                    ? ColorClass.primaryColor
+                    ? ColorClass.textColor
                     : Colors.white,
                 fontSize: 28,
                 fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: Get.height * 0.04),
+          SizedBox(height: Adaptive.px(24)),
           Text(
             'By creating a profile of your spouse you can easily know your partner’s wishes and get an opportunity to win his/her heart',
             textAlign: TextAlign.center,
             style: GoogleFonts.lato(
                 color: AdaptiveTheme.of(context).brightness == Brightness.light
-                    ? Colors.black
+                    ? const Color(0xff5D5D5D)
                     : const Color(0xffaeaeae),
                 fontSize: 16,
-                fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w500),
           ),
-          SizedBox(height: Get.height * 0.04),
+          SizedBox(height: Adaptive.px(44)),
           Image.asset('assets/images/empty_home.png'),
+          SizedBox(height: Adaptive.px(16)),
           CommonButton(
-            onTap: () => Get.to(() => ProfilePage()),
+            onTap: () => Get.to(() => const ProfilePage()),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -60,7 +60,8 @@ class HomePage extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          Container(height: Adaptive.px(106)),
         ],
       ),
     );
