@@ -69,9 +69,11 @@ class GetStartedPage extends StatelessWidget {
                     onTap: () => Get.offAll(() => const LoginPage()),
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: Adaptive.px(44),
-                          vertical: Adaptive.px(16)),
+                        horizontal: Adaptive.px(44),
+                      ),
                       width: Adaptive.px(343),
+                      height: Get.height * 0.07,
+                      // height: Adaptive.px(),
                       decoration: BoxDecoration(
                         color: ColorClass.primaryColor,
                         borderRadius: BorderRadius.circular(30),

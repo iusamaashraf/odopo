@@ -142,34 +142,34 @@ class _RootPageState extends State<RootPage> {
                     title: 'Order tracking',
                   ),
                 ),
-                PopupMenuItem<String>(
-                  value: "item5",
-                  // child: RowData(
-                  //   title: 'Remove ads',
-                  // ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Remove ads',
-                        style: GoogleFonts.lato(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      ),
-                      subscriptionController.isSubscribed.value
-                          ? const Icon(
-                              Icons.abc_outlined,
-                              color: ColorClass.primaryColor,
-                            )
-                          : Image.asset(IconClass.lock),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem<String>(
-                  value: "item6",
-                  child: RowData(
-                    title: 'Get discount',
-                  ),
-                ),
+                // PopupMenuItem<String>(
+                //   value: "item5",
+                //   // child: RowData(
+                //   //   title: 'Remove ads',
+                //   // ),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         'Remove ads',
+                //         style: GoogleFonts.lato(
+                //             fontSize: 16, fontWeight: FontWeight.w400),
+                //       ),
+                //       subscriptionController.isSubscribed.value
+                //           ? const Icon(
+                //               Icons.abc_outlined,
+                //               color: ColorClass.primaryColor,
+                //             )
+                //           : Image.asset(IconClass.lock),
+                //     ],
+                //   ),
+                // ),
+                // const PopupMenuItem<String>(
+                //   value: "item6",
+                //   child: RowData(
+                //     title: 'Get discount',
+                //   ),
+                // ),
                 PopupMenuItem<String>(
                   value: "item7",
                   child: GestureDetector(
@@ -399,7 +399,7 @@ class RowData extends StatelessWidget {
                   ? Colors.black
                   : Colors.white),
         ),
-        Image.asset(IconClass.lock),
+        // Image.asset(IconClass.lock),
       ],
     );
   }

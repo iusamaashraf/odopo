@@ -101,7 +101,7 @@ class _OtpPageState extends State<OtpPage> {
               SizedBox(
                 width: Get.width * 0.85,
                 child: Text(
-                  'We just sent you a mail with 4-digit code. Looks like very soon you will be logged in!',
+                  'Your partner sent you an invite code. Enter code to connect your account',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       fontSize: 16,
@@ -111,6 +111,18 @@ class _OtpPageState extends State<OtpPage> {
                           : Colors.white,
                       fontWeight: FontWeight.w400),
                 ),
+              ),
+              SizedBox(height: Adaptive.px(24)),
+              Text(
+                'Enter the code into field below',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.lato(
+                    fontSize: 16,
+                    color:
+                        AdaptiveTheme.of(context).brightness == Brightness.light
+                            ? const Color(0xff5d5d5d)
+                            : const Color(0xffAEAEAE),
+                    fontWeight: FontWeight.w400),
               ),
               SizedBox(height: Adaptive.px(24)),
               OTPTextField(
